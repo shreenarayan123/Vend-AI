@@ -8,7 +8,7 @@ type InitialValueProps ={
 }
 
 const InitialValues:InitialValueProps ={
-    currentStep:0,
+    currentStep:1,
     setCurrentStep:()=>undefined
 }
 
