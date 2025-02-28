@@ -2,8 +2,10 @@ import React from 'react'
 
 type Props = {}
 
-const InfoBar = (props: Props) => {
+const InforBar = (props: Props) => {
   return (
-    <div>InfoBar</div>
+    <div>InforBar</div>
   )
 }
+
+export default InforBar

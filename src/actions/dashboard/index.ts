@@ -59,7 +59,7 @@ export const getUserBalance = async () => {
   }
 };
 
-export const getPlanInfo = async () => {
+export const getUserPlanInfo = async () => {
   try {
     const user = await currentUser();
     if (user) {
@@ -94,7 +94,7 @@ export const getPlanInfo = async () => {
   }
 };
 
-export const getIserTotalProductsPrices = async () => {
+export const getUserTotalProductPrices = async () => {
   try {
     const user = await currentUser();
     if (user) {
@@ -122,7 +122,7 @@ export const getIserTotalProductsPrices = async () => {
   }
 };
 
-export const getUserTransaction = async () => {
+export const getUserTransactions = async () => {
   try {
     const user = await currentUser();
     if (user) {
