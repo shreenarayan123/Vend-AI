@@ -67,6 +67,29 @@ const DomainMenu = ({min, domains}: Props) => {
           </Loader>
         </AppDrawer>
       </div>
+      <div>
+        { domains &&
+         domains.map((domain, key)=>(
+          <Link
+          href={`/settings/${domain.name.split('.')[0]}`}
+          key={domain.id}
+          className={cn(
+            'flex items-center gap-2 px-1 py-2 rounded-lg my-1',
+          !min ? 'p-2': 'py-2', 
+          domain.name.split('.')[0] == isDomain && 'bg-white'
+        )}
+          >
+            <Image
+            src={`https://ucarecdn.com/${domain.icon}/`}
+            alt='logo'
+            width={20}
+            height={20}            
+            />
+            {!min && <p className='text-sm' >{domain.name}</p> }
+          </Link>
+         ))
+         }
+      </div>
     </div>
   )
 }
