@@ -8,14 +8,14 @@ import {
 } from '@/actions/dashboard'
 import DashboardCard from '@/components/dashboard/cards'
 import  PlanUsage  from '@/components/dashboard/plan-usage'
-import InfoBar from '@/components/inforbar'
+import InfoBar from '@/components/infobar'
 import { Separator } from '@/components/ui/separator'
 import CalIcon from '@/icons/cal-icon'
 import EmailIcon from '@/icons/email-icon'
 import PersonIcon from '@/icons/person-icon'
 import { TransactionsIcon } from '@/icons/transactions-icon'
 import { DollarSign } from 'lucide-react'
-import InforBar from '@/components/inforbar'
+import InforBar from '@/components/infobar'
 
 
 type Props = {

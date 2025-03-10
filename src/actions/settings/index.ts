@@ -322,11 +322,12 @@ export const onDeletUserDomain = async (id: string) => {
 };
 
 export const onCreateHelpDeskQuestion = async (
-  question: string,
   id: string,
+  question: string,
   answer: string
 ) => {
   try {
+    console.log(id, "from action");
     const helpDeskQuestion = await client.domain.update({
       where: {
         id,

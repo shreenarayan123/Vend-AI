@@ -1,4 +1,4 @@
-import InforBar from '@/components/inforbar'
+import InforBar from '@/components/infobar'
 import BillingSettings from '@/components/settings/billing-setings'
 import ChangePassword from '@/components/settings/change-password'
 import DarkMode from '@/components/settings/dark-mode'

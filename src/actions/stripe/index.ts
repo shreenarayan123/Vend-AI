@@ -1,9 +1,8 @@
 import { client } from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs";
-import { sub } from "date-fns";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY!, {
   typescript: true,
 });
 
