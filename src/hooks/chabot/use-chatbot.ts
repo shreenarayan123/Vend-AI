@@ -1,4 +1,4 @@
-// import { onAiChatBotAssistant, onGetCurrentChatBot } from '@/actions/bot'
+
 import { postToParent, pusherClient } from '@/lib/utils'
 import {
   ChatBotMessageProps,
@@ -78,6 +78,7 @@ const upload = new UploadClient({
   let limitRequest = 0;
   
   const onGetDomainChatBot = async(id:string)=>{
+    console.log(id, "id from get domain chatbot");
     setCurrentBotId(id)
     const chatBot = await onGetCurrentChatBot(id);
     if(chatBot){
@@ -93,8 +94,8 @@ const upload = new UploadClient({
   }
   useEffect(()=>{
     window.addEventListener('message',(e)=>{
-        console.log(e.data)
-        const botId = e.data
+      const botId = e.data
+      console.log(botId, "edata from useffect")
         if(limitRequest < 1 && typeof botId == 'string'){
             onGetDomainChatBot(botId)
             limitRequest++
@@ -102,7 +103,6 @@ const upload = new UploadClient({
     })
   },[])
   const onStartChatting  = handleSubmit(async(data)=>{
-    console.log(data, "data");
     if(data.image.length){
         console.log('image from user', data.image[0])
         const uploaded = await upload.uploadFile(data.image[0]);

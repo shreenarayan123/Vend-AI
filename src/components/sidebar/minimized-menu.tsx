@@ -26,10 +26,11 @@ const MiniMenu = ({onShrink, current, onSignOut, domains} : Props) => {
 
   return (
     <div>
-      <span>
-        <MenuLogo onClick={onShrink}/>
+      <span className="cursor-pointer">
+      <div onClick={onShrink} className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-teal-400"></div>
+        {/* <MenuLogo  onClick={onShrink}/> */}
       </span>
-      <div className="animate-fade-in opacity-0 delay-300 fill-mode-forwards flex flex-col justify-between h-full pt-10">
+      <div className="animate-fade-in opacity-0 delay-300 fill-mode-forwards flex flex-col justify-between h-full pt-10 cursor-pointer">
         <div className="flex flex-col">
           {SIDE_BAR_MENU.map((menu, key) => (
             <MenuItem

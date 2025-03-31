@@ -15,7 +15,7 @@ import { Suspense } from 'react'
 
 
 const WelcomeMessage = dynamic(
-  () => import('../../forms/settings/greetings-message'),
+  () => import('./greetings-message'),
   {
     ssr: false,
     loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-md" />

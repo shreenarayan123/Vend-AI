@@ -34,10 +34,11 @@ export const onStoreConversations = async (
 }
 
 export const onGetCurrentChatBot = async (id: string) => {
+
     try {
       const chatbot = await client.domain.findUnique({
         where: {
-          id,
+          id: id
         },
         select: {
           helpdesk: true,
@@ -206,7 +207,7 @@ export const onGetCurrentChatBot = async (id: string) => {
             message,
             author
           )
-  
+          console.log(checkCustomer?.customer[0].chatRoom[0].id, "checkCustomer")
           const chatCompletion = await openai.chat.completions.create({
             model: "deepseek/deepseek-r1:free",
             messages: [
@@ -248,7 +249,7 @@ export const onGetCurrentChatBot = async (id: string) => {
             ],
             // model: 'gpt-4o-mini',
           })
-  
+          console.log( chatCompletion.choices[0].message.content, "chatCompletion")
           if (chatCompletion.choices[0].message.content?.includes('(realtime)')) {
             const realtime = await client.chatRoom.update({
               where: {

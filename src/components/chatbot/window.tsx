@@ -72,7 +72,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
   ) => {
     console.log(errors)
     return (
-      <div className="h-[630px] w-[450px] absolute top-30  flex flex-col bg-white rounded-xl mr-[80px] border-[1px] overflow-hidden">
+      <div className="h-[570px] w-[450px] absolute top-30  flex flex-col bg-white rounded-xl mr-[80px] border-[1px] overflow-hidden">
         <div className="flex justify-between px-4 pt-4">
           <div className="flex gap-2">
             <Avatar className="w-10 h-10">
@@ -84,7 +84,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
             </Avatar>
             <div className="flex items-start flex-col">
               <h3 className="text-lg font-bold leading-none">
-                Sales Rep - Web Prodigies
+                Sales Rep - Nexus Ai
               </h3>
               <p className="text-sm">{domainName.split('.com')[0]}</p>
               {realtimeMode?.mode && (
@@ -116,7 +116,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
                   background: theme || '',
                   color: textColor || '',
                 }}
-                className="px-3 flex h-[400px] flex-col py-5 gap-3 chat-window overflow-y-auto"
+                className="px-3 flex h-[350px] flex-col py-5 gap-3 chat-window overflow-y-auto"
                 ref={ref}
               >
                 {chats.map((chat, key) => (
@@ -131,7 +131,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
                 onSubmit={onChat}
                 className="flex px-3 py-1 flex-col flex-1 bg-porcelain"
               >
-                <div className="flex justify-between">
+                <div className="flex justify-between px-3">
                   <Input
                     {...register('content')}
                     placeholder="Type your message..."
@@ -139,7 +139,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
                   />
                   <Button
                     type="submit"
-                    className="mt-3"
+                    className="mt-3 h-7"
                   >
                     <Send />
                   </Button>
@@ -178,7 +178,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
           </TabsContent>
         </TabsMenu>
         <div className="flex justify-center ">
-          <p className="text-gray-400 text-xs">Powered by Corinna AI</p>
+          <p className="text-gray-400 text-xs">Powered by Nexus AI</p>
         </div>
       </div>
     )

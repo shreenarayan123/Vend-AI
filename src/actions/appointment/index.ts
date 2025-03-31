@@ -27,7 +27,9 @@ export const getUserAppointments = async () => {
   }
 };
 
+
 export const onDomainCustomerResponse = async (customerId: string) => {
+  console.log(customerId,  'customerId');
   try {
     const customerQuestions = await client.customer.findUnique({
       where: {

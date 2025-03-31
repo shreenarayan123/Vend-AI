@@ -18,6 +18,17 @@ export const onCreateCustomerPaymentIntent = async (
         automatic_payment_methods: {
           enabled: true,
         },
+        description: "Software product purchase", 
+        shipping: {
+          name: "Sunny",
+          address: {
+            line1: "123 Street",
+            city: "Mumbai",
+            postal_code: "12345",
+            state: "Maharashtra",
+            country: "IN"
+          }
+        },
       },
       {
         stripeAccount: stripeId,

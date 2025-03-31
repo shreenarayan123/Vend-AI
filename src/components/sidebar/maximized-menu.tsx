@@ -21,20 +21,24 @@ type Props = {
 
 const MaxMenu = ({ current, domains, onExpand, onSignOut }: Props) => {
   return (
-    <div className="py-3 px-4 flex flex-col h-full">
+    <div className="py-3 px-1 flex flex-col h-full">
       <div className="flex justify-between items-center">
-        <Image
+        {/* <Image
           src="/images/logo.png"
           alt="LOGO"
           sizes="100vw"
-          className="animate-fade-in opacity-0 delay-300 fill-mode-forwards"
+          className="animate-fade-in opacity-0 delay-300 fill-mode-forwards cursor-pointer"
           style={{
             width: '50%',
             height: 'auto',
           }}
           width={0}
           height={0}
-        />
+        /> */}
+        <div className="flex items-center gap-2">
+        <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-teal-400"></div>
+            <span className="text-xl font-bold">ChatEngage</span>
+          </div>
         <Menu
           className="cursor-pointer animate-fade-in opacity-0 delay-300 fill-mode-forwards"
           onClick={onExpand}

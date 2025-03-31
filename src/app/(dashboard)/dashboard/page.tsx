@@ -15,7 +15,7 @@ import EmailIcon from '@/icons/email-icon'
 import PersonIcon from '@/icons/person-icon'
 import { TransactionsIcon } from '@/icons/transactions-icon'
 import { DollarSign } from 'lucide-react'
-import InforBar from '@/components/infobar'
+import { currentUser } from '@clerk/nextjs'
 
 
 type Props = {
@@ -23,6 +23,13 @@ type Props = {
 }
 
 const page = async({ }: Props) => {
+  const user = await currentUser();
+      if (!user) {
+        console.log('User not authenticated')
+      }else{
+        console.log('User authenticated')
+      }
+  
   const clients = await getUserClients();
   const sales = await getUserBalance();
   const plan = await getUserPlanInfo();

@@ -46,6 +46,7 @@ export const getUserBalance = async () => {
         const transaction = await stripe.balance.retrieve({
           stripeAccount: connectedStripe.stripeId!,
         });
+        console.log(transaction, "transaction");
         if (transaction) {
           const sales = transaction.pending.reduce((total, next) => {
             return total + next.amount;

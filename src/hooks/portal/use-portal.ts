@@ -1,6 +1,5 @@
 import {
     onBookNewAppointment,
-    onDomainCustomerResponse,
     saveAnswers,
   } from '@/actions/appointment'
   import { useEffect, useState } from 'react'

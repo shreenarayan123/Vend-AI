@@ -18,11 +18,16 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        step: ["Instrument Serif", "serif"],
+        customer: ['Inter Tight', 'sans-serif'],
+      },
       colors: {
+        customblue:'#f2f5f7',
         cream: '#F5F5F5',
         gravel: '#4E4E4E',
         iridium: '#3F3F3F',
-        orange: '#FFA947',
+        orange: '#0a0a0a',
         peach: '#FFE0BD',
         platinum: '#E6E6E6',
         ghost: '#CDCDCD',
@@ -104,7 +109,7 @@ const config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require("@tailwindcss/typography")],
 } satisfies Config
 
 export default config
