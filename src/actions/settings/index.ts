@@ -181,7 +181,6 @@ export const onGetCurrentDomainInfo = async (domain: string) => {
             name: true,
             icon: true,
             userId: true,
-            products: true,
             chatBot: {
               select: {
                 id: true,
@@ -321,71 +320,88 @@ export const onDeletUserDomain = async (id: string) => {
   }
 };
 
-export const onCreateHelpDeskQuestion = async (
-  id: string,
-  question: string,
-  answer: string
-) => {
+export const onCreateCompanyInfo = async (id:string, info:string[])=>{
   try {
-    const helpDeskQuestion = await client.domain.update({
-      where: {
-        id,
+    const companyData = await client.domain.update({
+      where:{
+        id:id
       },
-      data: {
-        helpdesk: {
-          create: {
-            question,
-            answer,
-          },
-        },
+      data:{
+        domainInfo:info
       },
-      include: {
-        helpdesk: {
-          select: {
-            id: true,
-            question: true,
-            answer: true,
-          },
-        },
-      },
-    });
-    if (helpDeskQuestion) {
+      select:{
+        domainInfo:true,
+      }
+    })
+    if(companyData){
       return {
-        status: 200,
-        message: "New help desk Question Created !",
-        questions: helpDeskQuestion.helpdesk,
-      };
+        status:200,
+        message:"Company info updated successfully",
+        data:companyData.domainInfo
+      }
     }
     return {
       status: 400,
-      message: "oops something went wrong",
+      message: "Oops something went wrong",
     };
   } catch (error) {
     console.log(error);
   }
-};
-
-export const onGetAllHelpDeskQuestions = async (id: string) => {
+}
+// export const onDeleteCompanyInfo = async (index:number, id:string)=>{
+//   try {
+//     const deletedCompanyInfo = await client.domain.update({
+//       where:{
+//         id:id
+//       },
+//       data:{
+//         domainInfo:{
+//           delete:[index]
+//         }
+//       }
+//     })
+    // if(deletedCompanyInfo){
+    //   return {
+    //     status:200,
+    //     message:"Company info deleted successfully",
+    //     data:deletedCompanyInfo.domainInfo
+    //   }
+    // }
+    // return {
+    //   status: 400,
+    //   message: "Oops something went wrong",
+    // }
+//   } catch (error) {
+//     console.log(error);
+    
+//   }
+// }
+export const onGetAllCompanyInfo = async (id:string)=>{
   try {
-    const questions = await client.helpDesk.findMany({
-      where: {
-        domainId: id,
+    const allCompanyInfo = await client.domain.findUnique({
+      where:{
+        id:id
       },
-      select: {
-        question: true,
-        answer: true,
-        id: true,
-      },
-    });
+      select:{
+        domainInfo:true
+      }
+    })
+    if(allCompanyInfo){
+      return {
+        status:200,
+        message:"Company info fetched successfully",
+        data:allCompanyInfo.domainInfo
+      }
+    }
     return {
-      staus: 200,
-      questions,
-      message: " New Questions added successfully",
+      status: 400,
+      message: "Oops something went wrong",
     };
   } catch (error) {
     console.log(error);
+    
   }
-};
+}
 
 export const onCreateFilterQuestions = async (id: string, question: string) => {
   try {
@@ -470,35 +486,4 @@ export const onGetPaymentConnected = async () => {
     console.log(error);
   }
 };
-export const onCreateNewDomainProduct = async (
-  id: string,
-  name: string,
-  image: string,
-  price: string
-) => {
-  try {
-    const product = await client.domain.update({
-      where: {
-        id,
-      },
-      data: {
-        products: {
-          create: {
-            name,
-            image,
-            price: parseInt(price),
-          },
-        },
-      },
-    })
 
-    if (product) {
-      return {
-        status: 200,
-        message: 'Product successfully created',
-      }
-    }
-  } catch (error) {
-    console.log(error)
-  }
-}

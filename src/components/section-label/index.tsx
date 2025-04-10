@@ -7,7 +7,7 @@ type Props = {
 
 const Section = ({label, message}: Props) => {
   return (
-    <div>
+    <div className='flex flex-col gap-3 '>
         <p className='text-sm font-medium' >{label} </p>
         <p className='text-sm font-light' >{message}</p>
     </div>

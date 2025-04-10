@@ -32,14 +32,7 @@ const upload = new UploadClient({
           welcomeMessage: string | null
           background: string | null
           textColor: string | null
-          helpdesk: boolean
         } | null
-        helpdesk: {
-          id: string
-          question: string
-          answer: string
-          domainId: string | null
-        }[]
       }
     | undefined
   >()

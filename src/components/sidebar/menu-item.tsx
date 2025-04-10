@@ -18,11 +18,11 @@ const MenuItem = ({ size, path, icon, label, current, onSignOut }: Props) => {
         <Link
           onClick={onSignOut}
           className={cn(
-            'flex items-center gap-2 px-1 py-2 rounded-lg my-1',
+            'flex items-center gap-2 px-3 py-2 rounded-lg my-1',
             !current
               ? 'text-gray-500'
               : current == path
-              ? 'bg-white font-bold text-black'
+              ? 'bg-blue-100 font-bold text-black'
               : 'text-gray-500'
           )}
           href={path ? `/${path}` : '#'}
@@ -38,9 +38,9 @@ const MenuItem = ({ size, path, icon, label, current, onSignOut }: Props) => {
             !current
               ? 'text-gray-500'
               : current == path
-              ? 'bg-white font-bold text-black'
+              ? 'bg-blue-100 font-bold text-black'
               : 'text-gray-500',
-            'rounded-lg py-2 my-1'
+            'rounded-lg p-3 my-1'
           )}
           href={path ? `/${path}` : '#'}
         >

@@ -1,7 +1,8 @@
-'use client'
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
+import Logo from "../app/assets/logo.png";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -20,7 +21,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
-  
+
   useEffect(() => {
     const handleScroll = (): void => {
       if (window.scrollY > 0) {
@@ -29,24 +30,30 @@ export default function Home() {
         setIsScrolled(false);
       }
     };
-    
-    window.addEventListener('scroll', handleScroll);
-    
+
+    window.addEventListener("scroll", handleScroll);
+
     // Clean up event listener
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-50 w-full border-b ">
-      <div className={` px-16 flex h-16 items-center w-full justify-between ${
-        isScrolled 
-          ? 'backdrop-blur supports-[backdrop-filter]:bg-background/60 ' 
-          : 'bg-customblue '
-      }`}>          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-teal-400"></div>
-            <span className="text-xl font-bold">ChatEngage</span>
+        <div
+          className={` px-16 flex h-16 items-center w-full justify-between ${
+            isScrolled
+              ? "backdrop-blur supports-[backdrop-filter]:bg-background/60 "
+              : "bg-customblue "
+          }`}
+        >
+          {" "}
+          <div className="flex items-center gap-2">
+            <div className="relative">
+              <Image src={Logo} alt="Logo" width={36} height={36} />{" "}
+            </div>{" "}
+            <span className="text-xl font-bold">Vend AI</span>
           </div>
           <nav className="hidden md:flex items-center gap-6">
             <Link
@@ -70,25 +77,20 @@ export default function Home() {
           </nav>
           <div className="flex items-center gap-4">
             <Link href="/dashboard">
-            <Button variant="ghost" size="sm">
-              Log in
-            </Button>
+              <Button variant="ghost" size="sm">
+                Log in
+              </Button>
             </Link>
             <Link href="/dashboard">
-            <Button size="sm">Try for Free</Button>
+              <Button size="sm">Try for Free</Button>
             </Link>
           </div>
         </div>
       </header>
 
       <main className="flex-1 bg-customblue">
-        {/* Hero Section */}
-        <Hero/>
-
-        {/* Features Section */}
-       <Features/>
-
-        {/* Dashboard Preview */}
+        <Hero />
+        <Features />
         <section id="dashboard" className="py-24">
           <div className="container">
             <div className="text-center mb-16">
@@ -103,7 +105,7 @@ export default function Home() {
             <div className="relative h-[500px] rounded-xl overflow-hidden shadow-2xl border">
               <Image
                 src="/placeholder.svg?height=500&width=1200"
-                alt="ChatEngage dashboard"
+                alt="Vend AI dashboard"
                 fill
                 className="object-cover"
               />
@@ -121,14 +123,12 @@ export default function Home() {
         </section>
 
         {/* Pricing */}
-      <Pricing/>
+        <Pricing />
 
         {/* CTA Section */}
-      <CTA/>
+        <CTA />
       </main>
-      <Footer/>
-      
+      <Footer />
     </div>
   );
 }
-

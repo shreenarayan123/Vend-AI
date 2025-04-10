@@ -1,3 +1,4 @@
+import { info } from 'console'
 import { z } from 'zod'
 
 export const MAX_UPLOAD_SIZE = 1024 * 1024 * 2 // 2MB
@@ -9,15 +10,8 @@ export type DomainSettingsProps = {
   welcomeMessage?: string
 }
 
-export type HelpDeskQuestionsProps = {
-  question: string
-  answer: string
-}
-
-export type AddProductProps = {
-  name: string
-  image: any
-  price: string
+export type CompanyInfoProps = {
+  companyInfo: string
 }
 
 export type FilterQuestionsProps = {
@@ -83,9 +77,8 @@ export const DomainSettingsSchema = z
     }
   )
 
-export const HelpDeskQuestionsSchema = z.object({
-  question: z.string().min(1, { message: 'Question cannot be left empty' }),
-  answer: z.string().min(1, { message: 'Question cannot be left empty' }),
+export const CompanyInfoSchema = z.object({
+ companyInfo: z.string().min(1, { message: 'Data cannot be left empty' }),
 })
 
 export const FilterQuestionsSchema = z.object({

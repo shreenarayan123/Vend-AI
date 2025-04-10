@@ -19,7 +19,7 @@ const ProgressBar = ({credits, end, label}: Props) => {
         </div>
         <Progress
           value={(credits / end) * 100}
-          className="w-full"
+          className="w-full "
         />
       </div>
     </div>

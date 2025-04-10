@@ -11,7 +11,7 @@ const CTA = (props: Props) => {
         Ready to Transform Your Customer Engagement?
       </h2>
       <p className="text-xl text-white/80 max-w-2xl mx-auto mb-8">
-        Join thousands of businesses already using ChatEngage to connect with their customers.
+        Join thousands of businesses already using Vend AI to connect with their customers.
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Button size="lg" variant="default" className="bg-white text-blue-600 hover:bg-white/90">

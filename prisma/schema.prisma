@@ -31,8 +31,7 @@ model Domain {
   Campaign        Campaign?         @relation(fields: [campaignId], references: [id])
   User            User?             @relation(fields: [userId], references: [id], onDelete: Cascade)
   filterQuestions FilterQuestions[]
-  helpdesk        HelpDesk[]
-  products        Product[]
+  domainInfo      String[]
 }
 
 model ChatBot {
@@ -41,7 +40,6 @@ model ChatBot {
   icon           String?
   background     String?
   textColor      String?
-  helpdesk       Boolean @default(false)
   domainId       String? @unique @db.Uuid
   Domain         Domain? @relation(fields: [domainId], references: [id], onDelete: Cascade)
 }
@@ -54,18 +52,10 @@ model Billings {
   User    User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model HelpDesk {
-  id       String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  question String
-  answer   String
-  domainId String? @db.Uuid
-  Domain   Domain? @relation(fields: [domainId], references: [id], onDelete: Cascade)
-}
 
 model FilterQuestions {
   id       String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   question String
-  answered String?
   domainId String? @db.Uuid
   Domain   Domain? @relation(fields: [domainId], references: [id], onDelete: Cascade)
 }
@@ -130,16 +120,6 @@ model Campaign {
   createdAt DateTime @default(now())
   User      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
   domain    Domain[]
-}
-
-model Product {
-  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name      String
-  price     Int
-  image     String
-  createdAt DateTime @default(now())
-  domainId  String?  @db.Uuid
-  Domain    Domain?  @relation(fields: [domainId], references: [id], onDelete: Cascade)
 }
 
 enum Plans {

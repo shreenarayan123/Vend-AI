@@ -26,10 +26,10 @@ const Features = (props: Props) => {
     >
       <div className=" flex-col items-center">
         <div className="flex  relative  gap-5 bg-inherit w-full ">
-          <Image src={LeadQualify} alt="LeadQualify" />
+          <Image src={LeadQualify} alt="LeadQualify" className=""/>
           <div className="w-full flex items-center justify-center absolute h-full gap-[50px]">
             <Image
-              className="w-[470px] rounded-2xl shadow-xl"
+              className="w-[470px] rounded-2xl shadow-xl "
               src={FilterQuestions}
               alt="FilterQuestions"
             />

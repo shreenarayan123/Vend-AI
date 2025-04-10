@@ -41,22 +41,6 @@ const FilterQuestions = ({id}: Props) => {
               type="text"
             />
           </div>
-          <div className="flex flex-col gap-3">
-            <Section
-              label="Answer to question"
-              message="The anwer for the question above"
-            />
-            <FormGenerator
-              inputType="textarea"
-              register={register}
-              errors={errors}
-              form="filter-questions-form"
-              name="answer"
-              placeholder="Type your answer"
-              type="text"
-              lines={5}
-            />
-          </div>
           <Button
             type="submit"
             className="bg-orange hover:bg-orange hover:opacity-70 transition duration-150 ease-in-out text-white font-semibold"

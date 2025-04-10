@@ -30,36 +30,6 @@ export const getUserClients = async () => {
   }
 };
 
-export const getUserBalance = async () => {
-  try {
-    const user = await currentUser();
-    if (user) {
-      const connectedStripe = await client.user.findUnique({
-        where: {
-          clerkId: user.id,
-        },
-        select: {
-          stripeId: true,
-        },
-      });
-      if (connectedStripe) {
-        const transaction = await stripe.balance.retrieve({
-          stripeAccount: connectedStripe.stripeId!,
-        });
-        console.log(transaction, "transaction");
-        if (transaction) {
-          const sales = transaction.pending.reduce((total, next) => {
-            return total + next.amount;
-          }, 0);
-          return sales / 100;
-        }
-      }
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const getUserPlanInfo = async () => {
   try {
     const user = await currentUser();
@@ -93,56 +63,4 @@ export const getUserPlanInfo = async () => {
   } catch (error) {
     console.log(error);
   }
-};
-
-export const getUserTotalProductPrices = async () => {
-  try {
-    const user = await currentUser();
-    if (user) {
-      const products = await client.product.findMany({
-        where: {
-          Domain: {
-            User: {
-              clerkId: user.id,
-            },
-          },
-        },
-        select: {
-          price: true,
-        },
-      });
-      if (products) {
-        const total = products.reduce((total, next) => {
-          return total + next.price;
-        }, 0);
-        return total;
-      }
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const getUserTransactions = async () => {
-  try {
-    const user = await currentUser();
-    if (user) {
-      const connectedStripe = await client.user.findUnique({
-        where: {
-          clerkId: user.id,
-        },
-        select: {
-          stripeId: true,
-        },
-      });
-      if (connectedStripe) {
-        const transaction = await stripe.charges.list({
-          stripeAccount: connectedStripe.stripeId!,
-        });
-        if (transaction) {
-          return transaction;
-        }
-      }
-    }
-  } catch (error) {}
 };

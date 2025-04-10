@@ -1,5 +1,7 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import Logo from "../../app/assets/logo.png";
 
 type Props = {}
 
@@ -9,8 +11,10 @@ const Footer = (props: Props) => {
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center gap-2 mb-4 md:mb-0">
-              <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-teal-400"></div>
-              <span className="text-xl font-bold">ChatEngage</span>
+              <div className="relative">
+                            <Image src={Logo} alt="Logo" width={36} height={36} />{" "}
+                          </div>{" "}
+              <span className="text-xl font-bold">Vend AI</span>
             </div>
             <div className="flex gap-8">
               <Link
@@ -34,7 +38,7 @@ const Footer = (props: Props) => {
             </div>
           </div>
           <div className="mt-8 text-center text-sm text-muted-foreground">
-            © {new Date().getFullYear()} ChatEngage. All rights reserved.
+            © {new Date().getFullYear()} Vend AI. All rights reserved.
           </div>
         </div>
       </footer>

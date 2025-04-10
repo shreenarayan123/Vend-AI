@@ -35,12 +35,6 @@ type Props = {
         mode: boolean
       }
     | undefined
-  helpdesk: {
-    id: string
-    question: string
-    answer: string
-    domainId: string | null
-  }[]
   setChat: React.Dispatch<
     React.SetStateAction<
       {
@@ -61,7 +55,6 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
       onChat,
       onResponding,
       domainName,
-      helpdesk,
       realtimeMode,
       setChat,
       textColor,
@@ -154,26 +147,6 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
                   />
                 </Label>
               </form>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="helpdesk">
-            <div className="h-[485px] overflow-y-auto overflow-x-hidden p-4 flex flex-col gap-4">
-              <div>
-                <CardTitle>Help Desk</CardTitle>
-                <CardDescription>
-                  Browse from a list of questions people usually ask.
-                </CardDescription>
-              </div>
-              <Separator orientation="horizontal" />
-
-              {helpdesk.map((desk) => (
-                <Accordion
-                  key={desk.id}
-                  trigger={desk.question}
-                  content={desk.answer}
-                />
-              ))}
             </div>
           </TabsContent>
         </TabsMenu>

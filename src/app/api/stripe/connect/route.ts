@@ -17,27 +17,22 @@ export async function GET() {
       type: 'standard',
       country: 'IN',
       business_type: 'company',
-      external_account: 'btok_us',
-      tos_acceptance: {
-        date: 1547923073,
-        ip: '172.18.80.19',
-      },
     })
     if (account) {
       const approve = await stripe.accounts.update(account.id, {
         business_profile: {
           mcc: '5045',
-          url: 'https://bestcookieco.com',
+          url: 'https://cookies.com/',
         },
         company: {
           address: {
             city: 'Fairfax',
             line1: '123 State St',
             postal_code: '22031',
-            state: 'VA',
+            state: 'MH',
           },
           tax_id: '000000000',
-          name: 'The Best Cookie Co',
+          name: 'The Best Cookie',
           phone: '8888675309',
         },
       })
@@ -117,7 +112,7 @@ export async function GET() {
                     account: account.id,
                     refresh_url:
                       'http://localhost:3000/callback/stripe/refresh',
-                    return_url: 'http://localhost:3000/callback/stripe/success',
+                    return_url: 'http://localhost:3000/integration',
                     type: 'account_onboarding',
                     collection_options: {
                       fields: 'currently_due',

@@ -56,7 +56,7 @@ const Hero = (props: Props) => {
             <div className="relative h-[400px] lg:h-[500px] rounded-xl overflow-hidden shadow-2xl border">
               <Image
                 src={YourWebsite}
-                alt="ChatEngage interface"
+                alt="Vend AI interface"
                 fill
                 className="object-cover"
                 priority
@@ -67,7 +67,7 @@ const Hero = (props: Props) => {
                     CE
                   </div>
                   <div>
-                    <p className="font-medium">ChatEngage Assistant</p>
+                    <p className="font-medium">Vend AI Assistant</p>
                     <p className="text-xs text-muted-foreground">Online</p>
                   </div>
                 </div>

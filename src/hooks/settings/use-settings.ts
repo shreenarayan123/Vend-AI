@@ -1,11 +1,10 @@
 import {
     onChatBotImageUpdate,
+    onCreateCompanyInfo,
     onCreateFilterQuestions,
-    onCreateHelpDeskQuestion,
-    onCreateNewDomainProduct,
     onDeletUserDomain,
+    onGetAllCompanyInfo,
     onGetAllFilterQuestions,
-    onGetAllHelpDeskQuestions,
     onUpdateDomain,
     onUpdatePassword,
     onUpdateWelcomeMessage,
@@ -15,14 +14,12 @@ import {
     ChangePasswordSchema,
   } from '@/schemas/auth.schema'
   import {
-    AddProductProps,
-    AddProductSchema,
+    CompanyInfoSchema,
+    CompanyInfoProps,
     DomainSettingsProps,
     DomainSettingsSchema,
     FilterQuestionsProps,
     FilterQuestionsSchema,
-    HelpDeskQuestionsProps,
-    HelpDeskQuestionsSchema,
   } from '@/schemas/settings.schema'
   import { zodResolver } from '@hookform/resolvers/zod'
   import { UploadClient } from '@uploadcare/upload-client'
@@ -149,59 +146,79 @@ import { useToast } from '../use-toast'
       deleting,
     }
   }
-  
-  export const useHelpDesk = (id: string) => {
-    const {
-      register,
-      formState: { errors },
-      handleSubmit,
+
+  export const useCompanyInfo = (id:string) =>{
+    const { register, handleSubmit,
+      formState:{errors}, 
       reset,
-    } = useForm<HelpDeskQuestionsProps>({
-      resolver: zodResolver(HelpDeskQuestionsSchema),
+    } = useForm<CompanyInfoProps>({
+      resolver:zodResolver(CompanyInfoSchema)
     })
-    const { toast } = useToast()
-  
+    const {toast } = useToast();
     const [loading, setLoading] = useState<boolean>(false)
-    const [isQuestions, setIsQuestions] = useState<
-      { id: string; question: string; answer: string }[]
+    const [isCompanyInfo, setIsCompanyInfo] = useState<
+     string[] | undefined
     >([])
-    const onSubmitQuestion = handleSubmit(async (values) => {
-      setLoading(true)
-      const question = await onCreateHelpDeskQuestion(
-        id,
-        values.question,
-        values.answer
-      )
-      if (question) {
-        setIsQuestions(question.questions!)
-        toast({
-          title: question.status == 200 ? 'Success' : 'Error',
-          description: question.message,
-        })
-        setLoading(false)
-        reset()
+    const onAddCompanyInfo = handleSubmit(async (values) => {
+      setLoading(true);
+      const info = await onGetAllCompanyInfo(id);
+      const existingInfo = info?.data;
+      
+      let businessInfo;
+      if (existingInfo?.length === 0) {
+        businessInfo = Array.isArray(values.companyInfo) ? values.companyInfo : [values.companyInfo];
+      } else if (existingInfo !== undefined && existingInfo.length > 0) {
+        businessInfo = Array.isArray(values.companyInfo) 
+          ? [...existingInfo, values.companyInfo] 
+          : [...existingInfo, values.companyInfo];
       }
-    })
-  
-    const onGetQuestions = async () => {
+      
+      const data = await onCreateCompanyInfo(id, businessInfo || []);
+      if (data) {
+        setIsCompanyInfo(data.data);
+        toast({
+          title: data.status == 200 ? 'Success' : 'Error',
+          description: data.message
+        });
+        reset();
+        setLoading(false);
+      }
+    });
+    const onDeleteCompanyInfo = (index:number) => async ()=>{
       setLoading(true)
-      const questions = await onGetAllHelpDeskQuestions(id)
-      if (questions) {
-        setIsQuestions(questions.questions)
+      const info = await onGetAllCompanyInfo(id)
+      const existingInfo = info?.data
+      if (existingInfo) {
+        const updatedInfo = existingInfo.filter((_:any, i:number) => i !== index)
+        const data = await onCreateCompanyInfo(id, updatedInfo)
+        if (data) {
+          setIsCompanyInfo(data.data)
+          toast({
+            title: data.status == 200 ? 'Success' : 'Error',
+            description: data.message
+          })
+          setLoading(false)
+        }
+      }
+    }
+    const onGetCompanyInfo = async ()=>{
+      setLoading(true)
+      const info = await onGetAllCompanyInfo(id)
+      if(info){
+        setIsCompanyInfo(info.data)
         setLoading(false)
       }
     }
-  
-    useEffect(() => {
-      onGetQuestions()
-    }, [])
-  
+
+    useEffect(()=>{
+      onGetCompanyInfo()
+    },[])
     return {
       register,
-      onSubmitQuestion,
+      onAddCompanyInfo,
       errors,
-      isQuestions,
       loading,
+      isCompanyInfo
     }
   }
   
@@ -256,40 +273,3 @@ import { useToast } from '../use-toast'
     }
   }
   
-  export const useProducts = (domainId: string) => {
-    const { toast } = useToast()
-    const [loading, setLoading] = useState<boolean>(false)
-    const {
-      register,
-      reset,
-      formState: { errors },
-      handleSubmit,
-    } = useForm<AddProductProps>({
-      resolver: zodResolver(AddProductSchema),
-    })
-  
-    const onCreateNewProduct = handleSubmit(async (values) => {
-      try {
-        setLoading(true)
-        const uploaded = await upload.uploadFile(values.image[0])
-        const product = await onCreateNewDomainProduct(
-          domainId,
-          values.name,
-          uploaded.uuid,
-          values.price
-        )
-        if (product) {
-          reset()
-          toast({
-            title: 'Success',
-            description: product.message,
-          })
-          setLoading(false)
-        }
-      } catch (error) {
-        console.log(error)
-      }
-    })
-  
-    return { onCreateNewProduct, register, errors, loading }
-}

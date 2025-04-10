@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/dialog";
 import { ArrowBigLeftIcon, ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Logo from '../../app/assets/logo.png'
+import StripeLogo from '../../app/assets/Stripe_Logo.svg'
 
 type Props = {
   trigger: React.ReactNode;
@@ -36,9 +38,9 @@ const Modal = ({
             <div className="flex justify-center gap-3">
               <div className="w-12 h-12 relative">
                 <Image
-                  src={`https://ucarecdn.com/2c9bd4ab-1f00-41df-bad2-df668f65a232/`}
-                  fill
-                  alt="Corinna"
+                  src={Logo}
+                  width={40}
+                  alt="Vend AI"
                 />
               </div>
               <div className="text-gray-400">
@@ -47,8 +49,8 @@ const Modal = ({
               </div>
               <div className="w-12 h-12 relative">
                 <Image
-                  src={`https://ucarecdn.com/${logo}/`}
-                  fill
+                  src={StripeLogo}
+                  width={80}
                   alt="Stripe"
                 />
               </div>

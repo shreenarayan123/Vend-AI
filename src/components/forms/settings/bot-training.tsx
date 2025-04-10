@@ -2,8 +2,8 @@ import TabsMenu from '@/components/tabs'
 import { TabsContent } from '@/components/ui/tabs'
 import { HELP_DESK_TABS_MENU } from '@/constants/menu'
 import React from 'react'
-import HelpDesk from './help-desk'
 import FilterQuestions from './filter-questions'
+import HelpDesk from './help-desk'
 
 type Props = {
     id:string
@@ -21,14 +21,13 @@ const BotTrainingForm = ({id}: Props) => {
       </div>
       <TabsMenu triggers={HELP_DESK_TABS_MENU}>
         <TabsContent
-          value="help desk"
+          value="knowledge base"
           className="w-full"
-        >
-          <HelpDesk id={id} />
+        > <HelpDesk id={id} />
         </TabsContent>
         <TabsContent value="questions">
           <FilterQuestions id={id} />
-        </TabsContent>
+        </TabsContent> 
       </TabsMenu>
     </div>
   )

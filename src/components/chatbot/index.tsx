@@ -31,10 +31,8 @@ const AiChatBot = (props: Props) => {
           errors={errors}
           setChat={setOnChats}
           realtimeMode={onRealTime}
-          helpdesk={currentBot?.helpdesk!}
           domainName={currentBot?.name!}
           ref={messageWindowRef}
-          help={currentBot?.chatBot?.helpdesk}
           theme={currentBot?.chatBot?.background}
           textColor={currentBot?.chatBot?.textColor}
           chats={onChats}

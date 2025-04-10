@@ -10,7 +10,7 @@ const Page = (props: Props) => {
   return (
     <>
     <InforBar/>
-    <div className="overflow-y-auto w-full chat-window flex-1 h-0 flex flex-col gap-10">
+    <div className="overflow-y-auto w-full chat-window flex-1 h-0 flex flex-col gap-10 p-10">
         <BillingSettings />
         <DarkMode />
         <ChangePassword />
