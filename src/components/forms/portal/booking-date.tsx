@@ -44,9 +44,7 @@ type Props = {
           <div className="w-[300px]">
             <h6>Discovery Call</h6>
             <CardDescription>
-              During this call, we aim to explore potential avenues for
-              partnership, promotional opportunities, or any other means through
-              which we can contribute to the success of your company.
+            During this call, we'll explore partnership and promotional opportunities to contribute to your company's success.
             </CardDescription>
           </div>
           <div>

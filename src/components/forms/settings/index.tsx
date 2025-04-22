@@ -36,7 +36,7 @@ const WelcomeMessage = dynamic(
   }
 
 
-const SettingsForm = ({chatBot, id, name, plan}: SettingsFormProps) => {
+const SettingsForm = ({chatBot, id, name, plan}: SettingsFormProps) => { 
     const {
         register,
         onUpdateSettings,
@@ -51,7 +51,7 @@ const SettingsForm = ({chatBot, id, name, plan}: SettingsFormProps) => {
           className="flex flex-col gap-8 pb-10"
           onSubmit={onUpdateSettings}
         >
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 ">
             <h2 className="font-bold text-2xl">Domain Settings</h2>
             <Separator orientation="horizontal" />
             <DomainUpdate
@@ -65,10 +65,6 @@ const SettingsForm = ({chatBot, id, name, plan}: SettingsFormProps) => {
           <div className="flex flex-col gap-3 mt-5">
             <div className="flex gap-4 items-center">
               <h2 className="font-bold text-2xl">Chatbot Settings</h2>
-              <div className="flex gap-1 bg-cream rounded-full px-3 py-1 text-xs items-center font-bold">
-                <PremiumBadge />
-                Premium
-              </div>
             </div>
             <Separator orientation="horizontal" />
             
@@ -91,17 +87,17 @@ const SettingsForm = ({chatBot, id, name, plan}: SettingsFormProps) => {
               <div className="col-span-1 relative">
                 <Image
                   src="/images/bot-ui.png"
-                  className="sticky top-0"
+                  className="sticky top-0 rounded-2xl"
                   alt="bot-ui"
-                  width={530}
-                  height={769}
+                  width={500}
+                  height={609}
                   priority
                 />
               </div>
             </div>
           </div>
     
-          <div className="flex gap-5 justify-end">
+          <div className="flex gap-5 ">
             <Button
               onClick={onDeleteDomain}
               variant="destructive"

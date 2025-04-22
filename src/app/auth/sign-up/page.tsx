@@ -8,7 +8,7 @@ import React from 'react'
 const page = () => {
   return (
     <div className='flex-1 py-36 md:px-16 w-full'>
-      <div className='flex flex-col h-full gap-3'>
+      <div className='flex flex-col h-full gap-0'>
         <SignUpFormProvider>
           <RegistrationFormStep/>
           <ButtonHandlers/>

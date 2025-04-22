@@ -1,7 +1,7 @@
 import Section from '@/components/section-label'
 import UploadButton from '@/components/upload-button'
 import { BotIcon } from '@/icons/bot-icon'
-
+import Logo from '@/app/assets/logo.png'
 import Image from 'next/image'
 import React from 'react'
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form'
@@ -37,8 +37,9 @@ const EditChatbotIcon = ({chatBot, register, errors}: Props) => {
           />
         </div>
       ) : (
-        <div className="rounded-full cursor-pointer shadow-md w-20 h-20 flex items-center justify-center bg-grandis">
-          <BotIcon />
+        <div >
+          <Image src={Logo} alt="Logo" width={80} height={80} />{" "}
+
         </div>
       )}
     </div>

@@ -15,7 +15,7 @@ type Props = {
 const UploadButton = ({ errors, label, register }: Props) => {
   return (
     <>
-      <div className="felx gap-2 items-center">
+      <div className="flex gap-2 items-center">
         <Label
           htmlFor="upload-button"
           className="flex gap-2 p-3 rounded-lg bg-cream text-gray-600 cursor-pointer font-semibold text-sm items-center"
@@ -32,6 +32,7 @@ const UploadButton = ({ errors, label, register }: Props) => {
         <p className="text-sm text-gray-400 ml-6">
           Recommended size is 300px * 300px, size <br /> less than 2MB
         </p>
+        
       </div>
       <ErrorMessage
         errors={errors}

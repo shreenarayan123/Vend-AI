@@ -199,7 +199,8 @@ export const onGetCurrentDomainInfo = async (domain: string) => {
     console.log(error);
   }
 };
-export const onUpdateDomain = async (name: string, id: string) => {
+export const onUpdateDomain = async ( name: string,id: string) => {
+  console.log( name, id, "id from update domain");
   try {
     const user = await currentUser();
     if (!user) return;
@@ -348,34 +349,40 @@ export const onCreateCompanyInfo = async (id:string, info:string[])=>{
     console.log(error);
   }
 }
-// export const onDeleteCompanyInfo = async (index:number, id:string)=>{
-//   try {
-//     const deletedCompanyInfo = await client.domain.update({
-//       where:{
-//         id:id
-//       },
-//       data:{
-//         domainInfo:{
-//           delete:[index]
-//         }
-//       }
-//     })
-    // if(deletedCompanyInfo){
-    //   return {
-    //     status:200,
-    //     message:"Company info deleted successfully",
-    //     data:deletedCompanyInfo.domainInfo
-    //   }
-    // }
-    // return {
-    //   status: 400,
-    //   message: "Oops something went wrong",
-    // }
-//   } catch (error) {
-//     console.log(error);
+export const onDeleteCompanyInfo = async (index: number, id: string) => {
+  try {
+    const currentDomain = await client.domain.findUnique({
+      where: { id },
+      select: { domainInfo: true }
+    });
     
-//   }
-// }
+    if (!currentDomain) {
+      return {
+        status: 404,
+        message: "Domain not found"
+      };
+    }
+    const updatedDomainInfo = currentDomain.domainInfo.filter((_, i) => i !== index);
+    const updatedDomain = await client.domain.update({
+      where: { id },
+      data: {
+        domainInfo: updatedDomainInfo
+      }
+    });
+    
+    return {
+      status: 200,
+      message: "Company info deleted successfully",
+      data: updatedDomain.domainInfo
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      status: 500,
+      message: "An error occurred while deleting company info"
+    };
+  }
+};
 export const onGetAllCompanyInfo = async (id:string)=>{
   try {
     const allCompanyInfo = await client.domain.findUnique({
@@ -463,6 +470,51 @@ export const onGetAllFilterQuestions = async (id: string) => {
     };
   } catch (error) {
     console.log(error);
+  }
+};
+export const onDeleteFilterQuestion = async (index: number, id: string) => {
+  try {
+    const currentDomain = await client.domain.findUnique({
+      where: { id },
+      select: { filterQuestions: true }
+    });
+    
+    if (!currentDomain) {
+      return {
+        status: 404,
+        message: "Domain not found"
+      };
+    }
+    const updatedDomainInfo = currentDomain.filterQuestions.filter((_, i) => i !== index).map((filterQuestion)=>({
+      id: filterQuestion.id,
+      question: filterQuestion.question
+    }));
+    const updatedDomain = await client.domain.update({
+      where: { id },
+      data: {
+        filterQuestions:{
+          updateMany: updatedDomainInfo.map((filterQuestion) => ({
+            where: { id: filterQuestion.id },
+            data: { question: filterQuestion.question },
+          }))
+        }
+      },
+      select: {
+        filterQuestions: true
+      }
+    });
+    
+    return {
+      status: 200,
+      message: "Company info deleted successfully",
+      data: updatedDomain.filterQuestions
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      status: 500,
+      message: "An error occurred while deleting company info"
+    };
   }
 };
 

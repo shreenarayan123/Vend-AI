@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState, useTransition } from 'react'
 import {
   Card,
   CardContent,
@@ -12,15 +12,29 @@ import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/loader'
 import Accordion from '@/components/accordion'
 import { useCompanyInfo } from '@/hooks/settings/use-settings'
-import { CrossIcon } from 'lucide-react'
+import { CrossIcon, Trash2 } from 'lucide-react'
+import { onDeleteCompanyInfo } from '@/actions/settings'
+import { useRouter } from 'next/navigation'
 
 type Props = {
   id:string
 }
 
 const HelpDesk = ({id}: Props) => {
-    const { register, errors, onAddCompanyInfo, isCompanyInfo, loading } =
-      useCompanyInfo(id);
+  const { register, errors, onAddCompanyInfo, isCompanyInfo, loading } =
+  useCompanyInfo(id);
+  const [domainInfoList, setDomainInfoList] = useState(isCompanyInfo);
+  const handleDelete = async (index:number, id:string) => {
+    const result = await onDeleteCompanyInfo(index, id);
+    if (result?.status === 200) {
+      setDomainInfoList(result.data);
+    }
+  };
+  useEffect(() => {
+    setDomainInfoList(isCompanyInfo);
+  }, [isCompanyInfo]);
+
+      
   return (
     <Card className="w-full grid grid-cols-1 lg:grid-cols-2">
     <CardContent className="p-6 border-r-[1px]">
@@ -54,16 +68,16 @@ const HelpDesk = ({id}: Props) => {
     </CardContent>
     <CardContent className="p-6 overflow-y-auto chat-window">
             <Loader loading={loading}>
-              {isCompanyInfo?.length ? (
-                isCompanyInfo.map((info, index) => (
-                  <span>
+              {domainInfoList?.length ? (
+                domainInfoList?.map((info, index) => (
+                  <span className='flex items-center gap-2' key={index}>
                     <p
                     key={index}
                     className="font-bold"
                   >
                     {info}
                   </p>
-                  {/* <Button onClick={onDeleteCompanyInfo(index) }><CrossIcon/></Button> */}
+                  <Button className='bg-transparent hover:bg-transparent' onClick={()=>handleDelete(index, id) }><Trash2 color="black" /></Button>
                   </span>
                 ))
               ) : (

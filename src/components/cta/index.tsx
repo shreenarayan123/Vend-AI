@@ -1,25 +1,31 @@
 import React from 'react'
 import { Button } from '../ui/button'
+import Link from 'next/link'
+import { ArrowRight, Zap } from "lucide-react";
 
 type Props = {}
 
 const CTA = (props: Props) => {
   return (
-    <section className="py-24 bg-gradient-to-r from-blue-600 to-teal-500">
+    <section className="py-24 bg-slate-100">
     <div className="container text-center">
-      <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white font-step italic">
+      <h2 className="text-3xl md:text-4xl font-customer font-bold mb-4 text-black">
         Ready to Transform Your Customer Engagement?
       </h2>
-      <p className="text-xl text-white/80 max-w-2xl mx-auto mb-8">
+      <p className="text-xl text-gray-500 max-w-2xl mx-auto mb-8">
         Join thousands of businesses already using Vend AI to connect with their customers.
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" variant="default" className="bg-white text-blue-600 hover:bg-white/90">
-          Try for Free
-        </Button>
-        <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
-          Book a Demo
-        </Button>
+           <Link href="/dashboard">
+                        <Button
+                          size="lg"
+                          className=" bg-black rounded-2xl text-white"
+                        >
+                          <Zap className="mr-2" />
+                          Try for Free
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                        </Link>
       </div>
     </div>
   </section>

@@ -33,8 +33,8 @@ const DomainMenu = ({min, domains}: Props) => {
           description="add in your domain address to integrate your chatbot"
           title="Add your business domain"
           onOpen={
-            <div className="cursor-pointer text-gray-500 rounded-full border-2">
-              <Plus />
+              <div className="cursor-pointer text-gray-500 rounded-full border-2 relative  left-2 top-1 ">
+              <Plus /> 
             </div>
           }
         >

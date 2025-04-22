@@ -31,7 +31,7 @@ const QuestionsForm = ({ questions, register, error, onNext }: Props) => {
         label={question.question}
         type="text"
         inputType="input"
-        placeholder={question.answered || 'Not answered'}
+        placeholder={question.answered || 'I would like to know enterpise plan for my business'}
       />
     ))}
 

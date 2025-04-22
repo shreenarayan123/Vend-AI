@@ -41,7 +41,7 @@ type SIDE_BAR_MENU_PROPS = {
       path: 'appointment',
     },
     {
-      label: 'Email Marketing',
+      label: 'Campaigns',
       icon: <EmailIcon />,
       path: 'email-marketing',
     },

@@ -35,7 +35,7 @@ const FormGenerator = ({
     case "input":
     default:
       return (
-        <Label className="flex flex-col gap-2" htmlFor={`input-${label}`}>
+        <Label className="flex flex-col gap-4" htmlFor={`input-${label}`}>
           {label && label}
           <Input
             id={`input-${label}`}

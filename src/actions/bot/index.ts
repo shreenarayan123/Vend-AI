@@ -226,9 +226,9 @@ export const onAiChatBotAssistant = async (
                     
                 if the customer says something out of context or inapporpriate. Simply say this is beyond you and you will get a real user to continue the conversation. And add a keyword (realtime) at the end.
   
-                if the customer agrees to book an appointment send them this link http://localhost:3000/portal/${id}/appointment/${
-                checkCustomer?.customer[0].id
-              }
+                if the customer agrees to book an appointment JUST SEND THEM LINK DONT ASK FURTHER QUESTIONS JUST SEND THEM THIS LINK http://localhost:3000/portal/${id}/appointment/${
+                checkCustomer?.customer[0].id 
+              } 
   
             `,
             },
@@ -302,13 +302,35 @@ export const onAiChatBotAssistant = async (
           const generatedLink = extractURLfromString(
             chatCompletion.choices[0].message.content as string
           );
-
+          
           if (generatedLink) {
-            const link = generatedLink[0];
+            const link = generatedLink[0]; 
+          const validateAndFixUUID=(link:string)=> {
+              const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+              const parts = link.split('/');
+              const lastPart = parts[parts.length - 1];
+              console.log(parts, "parts");
+              if (!uuidRegex.test(lastPart)) {
+                console.log(uuidRegex.test(lastPart), "uuidRegex.test(lastPart)");
+                const correctUUID = checkCustomer?.customer[0].id; 
+                console.log(correctUUID, "correctUUID");
+                if (correctUUID) {
+                  parts[parts.length - 1] = correctUUID;
+                  console.log(parts, "parts2");
+                }
+                return parts.join('/');
+              }
+              
+              return link;
+            }
+              const fixedLink = validateAndFixUUID(link);
+            console.log(fixedLink, "fixedLink");
+            
             const response = {
               role: "assistant",
               content: `Great! you can follow the link to proceed`,
-              link: link.slice(0, -1),
+              link: fixedLink, 
             };
 
             await onStoreConversations(
@@ -344,7 +366,7 @@ export const onAiChatBotAssistant = async (
 
 Begin with a brief, warm welcome.  Reference ${chatBotDomain.domainInfo} to answer questions about the business or platform.
 
-During the conversation, naturally obtain the customer's email address while staying in character. Keep responses conversational and concise (3-4 lines when possible).
+During the conversation, naturally obtain the customer's email address while staying in character. Keep responses short.
 
 Write as a human would: straightforward, simple language with natural phrasing.  Use occasional emojis to add warmth and personality. Only provide longer responses when the situation truly requires it.  
 dont send texts in bold          `,

@@ -4,12 +4,13 @@ import Link from "next/link";
 import YourWebsite from "../../app/assets/YourWebsite.png";
 import { ArrowRight, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Logo from "../../app/assets/logo.png";
 
 type Props = {}
 
 const Hero = (props: Props) => {
   return (
-    <section className="container py-24 md:py-32">
+    <section className="container py-20 md:py-20">
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">
             <div className="space-y-6">
               <div className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight flex flex-col">
@@ -42,15 +43,6 @@ const Hero = (props: Props) => {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
                 </Link>
-                <Link href="/dashboard">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="text-blue-600 rounded"
-                >
-                  Book a Demo
-                </Button>
-                </Link>
               </div>
             </div>
             <div className="relative h-[400px] lg:h-[500px] rounded-xl overflow-hidden shadow-2xl border">
@@ -63,12 +55,12 @@ const Hero = (props: Props) => {
               />
               <div className="absolute bottom-0 right-0 w-64 h-80 bg-white rounded-tl-xl shadow-lg p-4 m-4 border">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-teal-400 flex items-center justify-center text-white font-bold">
-                    CE
-                  </div>
+                  <div className="relative">
+                               <Image src={Logo} alt="Logo" width={36} height={36} />{" "}
+                             </div>{" "}
                   <div>
-                    <p className="font-medium">Vend AI Assistant</p>
-                    <p className="text-xs text-muted-foreground">Online</p>
+                    <p className="font-medium">Echo</p>
+                    <p className="text-xs text-muted-foreground">Vend AI</p>
                   </div>
                 </div>
                 <div className="space-y-3">

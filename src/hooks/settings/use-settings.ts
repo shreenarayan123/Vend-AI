@@ -92,7 +92,7 @@ import { useToast } from '../use-toast'
     const onUpdateSettings = handleSubmit(async (values) => {
       setLoading(true)
       if (values.domain) {
-        const domain = await onUpdateDomain(id, values.domain)
+        const domain = await onUpdateDomain( values.domain, id)
         if (domain) {
           toast({
             title: 'Success',
@@ -162,8 +162,8 @@ import { useToast } from '../use-toast'
     const onAddCompanyInfo = handleSubmit(async (values) => {
       setLoading(true);
       const info = await onGetAllCompanyInfo(id);
-      const existingInfo = info?.data;
-      
+      const existingInfo = info?.data;    
+
       let businessInfo;
       if (existingInfo?.length === 0) {
         businessInfo = Array.isArray(values.companyInfo) ? values.companyInfo : [values.companyInfo];
@@ -180,27 +180,10 @@ import { useToast } from '../use-toast'
           title: data.status == 200 ? 'Success' : 'Error',
           description: data.message
         });
-        reset();
+        reset()
         setLoading(false);
       }
     });
-    const onDeleteCompanyInfo = (index:number) => async ()=>{
-      setLoading(true)
-      const info = await onGetAllCompanyInfo(id)
-      const existingInfo = info?.data
-      if (existingInfo) {
-        const updatedInfo = existingInfo.filter((_:any, i:number) => i !== index)
-        const data = await onCreateCompanyInfo(id, updatedInfo)
-        if (data) {
-          setIsCompanyInfo(data.data)
-          toast({
-            title: data.status == 200 ? 'Success' : 'Error',
-            description: data.message
-          })
-          setLoading(false)
-        }
-      }
-    }
     const onGetCompanyInfo = async ()=>{
       setLoading(true)
       const info = await onGetAllCompanyInfo(id)
@@ -269,7 +252,7 @@ import { useToast } from '../use-toast'
       onAddFilterQuestions,
       register,
       errors,
-      isQuestions,
+      isQuestions
     }
   }
   

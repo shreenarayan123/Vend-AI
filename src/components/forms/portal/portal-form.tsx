@@ -65,10 +65,12 @@ const PortalForm = ({
     }, [])
   
     return (
-      <form
-        className="h-full flex flex-col gap-10 justify-center"
+      <div className="h-screen flex items-center justify-center bg-gradient-to-br from-red-400 via-pink-300  to-yellow-400">
+        <div className="bg-white shadow-lg rounded-2xl p-10 w-full max-w-2xl">
+          <form
+        className="flex flex-col gap-10"
         onSubmit={onBookAppointment}
-      >
+          >
         <PortalSteps
           loading={loading}
           slot={selectedSlot}
@@ -90,22 +92,24 @@ const PortalForm = ({
         {(step == 1 || step == 2) && (
           <div className="w-full flex justify-center">
             <div className="w-[400px] grid grid-cols-2 gap-3">
-              <div
-                className={cn(
-                  'rounded-full h-2 col-span-1',
-                  step == 1 ? 'bg-orange' : 'bg-platinum'
-                )}
-              ></div>
-              <div
-                className={cn(
-                  'rounded-full h-2 col-span-1',
-                  step == 2 ? 'bg-orange' : 'bg-platinum'
-                )}
-              ></div>
+          <div
+            className={cn(
+              'rounded-full h-2 col-span-1',
+              step == 1 ? 'bg-orange' : 'bg-platinum'
+            )}
+          ></div>
+          <div
+            className={cn(
+              'rounded-full h-2 col-span-1',
+              step == 2 ? 'bg-orange' : 'bg-platinum'
+            )}
+          ></div>
             </div>
           </div>
         )}
-      </form>
+          </form>
+        </div>
+      </div>
     )
   }
   
