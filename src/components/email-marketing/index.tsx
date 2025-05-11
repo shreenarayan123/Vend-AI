@@ -66,7 +66,7 @@ const EmailMarketing = ({ campaign, domains, subscription }: Props) => {
         id={isId}
       />
       <div>
-        <div className="flex gap-3 justify-end">
+        <div className="flex gap-3  justify-end md:flex-row flex-col">
           <Button
             disabled={isSelected.length == 0}
             onClick={onAddCustomersToCampaign}
@@ -111,13 +111,13 @@ const EmailMarketing = ({ campaign, domains, subscription }: Props) => {
             </CardDescription>
           </Card>
         </div>
-        <div className="flex flex-col items-end mt-5 gap-3">
+        <div className="flex flex-col w-full items-center md:items-end mt-5 gap-10">
           {campaign &&
             campaign.map((camp, i) => (
               <Card
                 key={camp.id}
                 className={cn(
-                  'p-5 min-w-[600px] cursor-pointer',
+                  'p-5 md:min-w-[600px] w-full  cursor-pointer flex flex-col',
                   campaignId == camp.id ? 'bg-gray-50' : ''
                 )}
                 onClick={() => onSelectCampaign(camp.id)}
@@ -139,14 +139,14 @@ const EmailMarketing = ({ campaign, domains, subscription }: Props) => {
                         </CardDescription>
                       </div>
                     </div>
-                    <div className="flex w-full justify-between items-center">
-                      <CardTitle className="text-xl">{camp.name}</CardTitle>
+                    <div className="flex w-full gap-2 md:gap-0 justify-between items-center">
+                      <CardTitle className="md:text-xl text-sm">{camp.name}</CardTitle>
                       <div className="flex gap-3">
                         <Modal
                           title="Edit Email"
                           description="This email will be sent to campaign members"
                           trigger={
-                            <Card className="rounded-lg cursor-pointer bg-grandis py-2 px-5 font-semibold text-sm hover:bg-orange text-gray-700">
+                            <Card className="rounded-lg cursor-pointer bg-grandis p-2 md:py-2 md:px-5 font-semibold text-xs md:text-sm hover:bg-orange text-gray-700">
                               Edit Email
                             </Card>
                           }

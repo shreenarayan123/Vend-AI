@@ -45,6 +45,11 @@ type SIDE_BAR_MENU_PROPS = {
       icon: <EmailIcon />,
       path: 'email-marketing',
     },
+    {
+      label: 'Installation',
+      icon: <TimerIcon />,
+      path: 'installation',
+    }
 ]
 
 type TABS_MENU_PROPS = {

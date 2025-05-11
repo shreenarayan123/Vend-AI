@@ -24,7 +24,7 @@ const ConversationMenu = ({domains}: Props) => {
   const { register, chatRooms, loading, onGetActiveChatMessages } = useConversation()
 
 return (
-  <div className="py-3 pl-3">
+  <div className="py-3 pl-3 md:h-auto h-0 flex-1 md:overflow-auto ">
       <div >
         <div className='bg-slate-100 rounded-xl flex items-center gap-2 p-2 w-[90px]'>
           <span>Chats</span>

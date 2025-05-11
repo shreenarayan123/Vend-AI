@@ -3,15 +3,13 @@ import { Separator } from '@/components/ui/separator'
 import { useSettings } from '@/hooks/settings/use-settings'
 import React from 'react'
 import  DomainUpdate  from './domain-update'
-import CodeSnippet from './code-snippet'
-import PremiumBadge from '@/icons/premium-badge'
+import CodeSnippet from '../../installation/code-snippet'
 import EditChatbotIcon from './edit-chatbot-icon'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/loader'
 import { Suspense } from 'react'
-
 
 
 const WelcomeMessage = dynamic(
@@ -59,7 +57,7 @@ const SettingsForm = ({chatBot, id, name, plan}: SettingsFormProps) => {
               register={register}
               errors={errors}
             />
-            <CodeSnippet id={id} />
+            {/* <CodeSnippet id={id} /> */}
           </div>
     
           <div className="flex flex-col gap-3 mt-5">
@@ -83,14 +81,13 @@ const SettingsForm = ({chatBot, id, name, plan}: SettingsFormProps) => {
                   />
                 </Suspense>
               </div>
-              
-              <div className="col-span-1 relative">
+              <div className=" relative">
                 <Image
                   src="/images/bot-ui.png"
                   className="sticky top-0 rounded-2xl"
                   alt="bot-ui"
-                  width={500}
-                  height={609}
+                  width={400}
+                  height={400}
                   priority
                 />
               </div>

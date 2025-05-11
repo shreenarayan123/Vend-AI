@@ -29,8 +29,8 @@ const MaxMenu = ({ current, domains, onExpand, onSignOut }: Props) => {
             src={Logo}
             alt="Logo"
             className="hidden md:block lg:block"
-            width={36}
-            height={36}
+            width={27}
+            height={27}
           />
           <span className="text-xl font-bold">Vend AI</span>
         </div>

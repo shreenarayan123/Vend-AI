@@ -19,7 +19,7 @@ const Messenger = (props: Props) => {
     register,
   } = useChatWindow()
   return (
-    <div className="flex-1 flex flex-col h-0 relative">
+    <div className="md:flex-1 flex flex-col md:h-0  relative">
       <div className="flex-1 h-0 w-full flex flex-col">
         <Loader loading={loading}>
           <div

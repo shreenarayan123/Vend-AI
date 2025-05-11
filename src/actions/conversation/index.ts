@@ -144,14 +144,14 @@ export const onRealTimeChat = async (
   id:string,
   role: 'assistant' | 'user'
 )=>{
-  //WIP
-  // pusherServer.trigger(chatRoom, 'realtime-mode', {
-  //   chat:{
-  //     message,
-  //     id,
-  //     role
-  //   }
-  // })
+
+  pusherServer.trigger(chatRoom, 'realtime-mode', {
+    chat:{
+      message,
+      id,
+      role
+    }
+  })
 }
 
 export const onOwnerSendMessage = async (

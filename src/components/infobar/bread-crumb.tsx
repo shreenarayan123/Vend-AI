@@ -42,6 +42,8 @@ const BreadCrumb = (props: Props) => {
             ? "Send bulk emails to your customers"
             : page == "integration"
             ? "Connect third-party applications into Vend AI"
+             : page == "installation"
+            ? "Intrgrate Vend AI chatbot with your website"
             : "Modify domain settings, change chatbot options, enter sales questions and train your bot to do what you want it to."}
         </p>
       </div>

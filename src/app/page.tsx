@@ -42,7 +42,7 @@ export default function Home() {
           {" "}
           <div className="flex items-center gap-2">
             <div className="relative">
-              <Image src={Logo} alt="Logo" width={36} height={36} />{" "}
+              <Image src={Logo} alt="Logo" width={27} height={27} />{" "}
             </div>{" "}
             <span className="text-xl font-bold">Vend AI</span>
           </div>

@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from 'react'
 import { UploadClient } from '@uploadcare/upload-client'
 import { useForm } from 'react-hook-form'
 import { onAiChatBotAssistant, onGetCurrentChatBot } from '@/actions/bot'
+import { useSearchParams } from 'next/navigation'
 
 const upload = new UploadClient({
     publicKey: process.env.NEXT_PUBLIC_UPLOAD_CARE_PUBLIC_KEY as string,
@@ -49,6 +50,9 @@ const upload = new UploadClient({
   const [onRealTime, setOnRealTime] = useState<
   { chatroom: string; mode: boolean } | undefined
 >(undefined)
+const searchParams = useSearchParams();
+const id = searchParams.get('id');
+console.log(id, "id from usechatbot")
   const onScrollToBottom = () => {
     messageWindowRef.current?.scroll({
       top: messageWindowRef.current.scrollHeight,
@@ -63,8 +67,8 @@ const upload = new UploadClient({
   useEffect(() => {
     postToParent(
       JSON.stringify({
-        width: botOpened ? 550 : 80,
-        height: botOpened ? 800 : 80,
+        width: botOpened ? 550 : 550,
+        height: botOpened ? 800 : 800,
       })
     )
   }, [botOpened])
@@ -86,14 +90,15 @@ const upload = new UploadClient({
     }
   }
   useEffect(()=>{
-    window.addEventListener('message',(e)=>{
-      const botId = e.data
-      console.log(botId, "edata from useffect")
-        if(limitRequest < 1 && typeof botId == 'string'){
-            onGetDomainChatBot(botId)
+   
+    // window.addEventListener('message',(e)=>{
+    //   const botId = e.data
+    //   console.log(botId, "edata from useffect")
+        if(limitRequest < 1 && typeof id == 'string'){
+            onGetDomainChatBot(id)
             limitRequest++
         }
-    })
+    // })
   },[])
   const onStartChatting  = handleSubmit(async(data)=>{
     if(data.image.length){

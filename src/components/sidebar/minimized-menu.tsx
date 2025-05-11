@@ -27,7 +27,7 @@ const MiniMenu = ({ onShrink, current, onSignOut, domains }: Props) => {
   return (
     <div className="">
       <div onClick={onShrink} className="relative py-5 w-full flex justify-center cursor-pointer border-b-[1px] border-gray-300">
-        <Image src={Logo} alt="Logo" width={36} height={36} />{" "}
+        <Image src={Logo} alt="Logo" width={27} height={27} />{" "}
       </div>{" "}
       <div className=" px-4 py-3  animate-fade-in opacity-0 delay-300 fill-mode-forwards flex flex-col justify-between h-full pt-5 cursor-pointer">
         <div className="flex flex-col">
