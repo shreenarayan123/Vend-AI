@@ -93,7 +93,9 @@ import { useToast } from '../use-toast'
       setLoading(true)
       if (values.domain) {
         const domain = await onUpdateDomain( values.domain, id)
+        const domainName = values.domain.split('.')[0]
         if (domain) {
+          router.push(`/settings/${domainName}`);
           toast({
             title: 'Success',
             description: domain.message,

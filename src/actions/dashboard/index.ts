@@ -1,7 +1,6 @@
 "use server";
 import { client } from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs";
-import { userAgent } from "next/server";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY!, {

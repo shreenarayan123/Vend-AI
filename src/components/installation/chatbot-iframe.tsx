@@ -1,10 +1,11 @@
+'use client'
 import { useEffect } from "react";
   
   const ChatBotIframe = () => {
     useEffect(() => {
       // Create iframe element
       const iframe = document.createElement("iframe");
-      iframe.src = "http://localhost:5000/chatbot?id=${id}";
+      iframe.src = "${backendurl}chatbot?id=${id}";
       iframe.classList.add("chat-frame");
   
       // Add the iframe to the DOM

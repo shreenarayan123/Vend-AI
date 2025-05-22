@@ -11,6 +11,10 @@ const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
   apiKey: process.env.OPEN_AI_KEY,
 });
+const formQuestions = [
+  { question: 'Spill the tea — what’s this appointment for?" ☕' },
+  { question: "Got something in mind? Let us know!" },
+];
 
 export const onStoreConversations = async (
   id: string,
@@ -84,6 +88,7 @@ export const onAiChatBotAssistant = async (
       },
     });
     if (chatBotDomain) {
+      console.log(chatBotDomain.filterQuestions, "chatbot filter questions");
       const extractedEmail = extractEmailsFromString(message);
       if (extractedEmail) {
         customerEmail = extractedEmail[0];
@@ -132,7 +137,7 @@ export const onAiChatBotAssistant = async (
                 create: {
                   email: customerEmail,
                   questions: {
-                    create: chatBotDomain.filterQuestions,
+                    create: formQuestions,
                   },
                   chatRoom: {
                     create: {},
@@ -201,7 +206,6 @@ export const onAiChatBotAssistant = async (
           message,
           author
         );
-        console.log(checkCustomer?.customer[0].chatRoom[0].id, "checkCustomer");
         const chatCompletion = await openai.chat.completions.create({
           model: "deepseek/deepseek-r1:free",
           messages: [
@@ -227,7 +231,7 @@ export const onAiChatBotAssistant = async (
                 if the customer says something out of context or inapporpriate. Simply say this is beyond you and you will get a real user to continue the conversation. And add a keyword (realtime) at the end.
   
                 if the customer agrees to book an appointment JUST SEND THEM LINK DONT ASK FURTHER QUESTIONS JUST SEND THEM THIS LINK http://localhost:3000/portal/${id}/appointment/${
-                checkCustomer?.customer[0].id 
+                checkCustomer?.customer[0].id
               } 
   
             `,
@@ -302,35 +306,31 @@ export const onAiChatBotAssistant = async (
           const generatedLink = extractURLfromString(
             chatCompletion.choices[0].message.content as string
           );
-          
-          if (generatedLink) {
-            const link = generatedLink[0]; 
-          const validateAndFixUUID=(link:string)=> {
-              const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
-              const parts = link.split('/');
+          if (generatedLink) {
+            const link = generatedLink[0];
+            const validateAndFixUUID = (link: string) => {
+              const uuidRegex =
+                /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+              const parts = link.split("/");
               const lastPart = parts[parts.length - 1];
-              console.log(parts, "parts");
               if (!uuidRegex.test(lastPart)) {
-                console.log(uuidRegex.test(lastPart), "uuidRegex.test(lastPart)");
-                const correctUUID = checkCustomer?.customer[0].id; 
-                console.log(correctUUID, "correctUUID");
+                const correctUUID = checkCustomer?.customer[0].id;
                 if (correctUUID) {
                   parts[parts.length - 1] = correctUUID;
-                  console.log(parts, "parts2");
                 }
-                return parts.join('/');
+                return parts.join("/");
               }
-              
+
               return link;
-            }
-              const fixedLink = validateAndFixUUID(link);
-            console.log(fixedLink, "fixedLink");
-            
+            };
+            const fixedLink = validateAndFixUUID(link);
+
             const response = {
               role: "assistant",
               content: `Great! you can follow the link to proceed`,
-              link: fixedLink, 
+              link: fixedLink,
             };
 
             await onStoreConversations(

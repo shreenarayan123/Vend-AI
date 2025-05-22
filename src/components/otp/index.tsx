@@ -1,5 +1,4 @@
 
-import { Input } from 'postcss';
 import React from 'react'
 import { InputOTP, InputOTPSlot } from '../ui/input-otp';
 

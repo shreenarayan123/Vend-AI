@@ -3,7 +3,6 @@ import { Separator } from '@/components/ui/separator'
 import { useSettings } from '@/hooks/settings/use-settings'
 import React from 'react'
 import  DomainUpdate  from './domain-update'
-import CodeSnippet from '../../installation/code-snippet'
 import EditChatbotIcon from './edit-chatbot-icon'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
@@ -34,7 +33,7 @@ const WelcomeMessage = dynamic(
   }
 
 
-const SettingsForm = ({chatBot, id, name, plan}: SettingsFormProps) => { 
+const SettingsForm = ({chatBot, id, name}: SettingsFormProps) => { 
     const {
         register,
         onUpdateSettings,

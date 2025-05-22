@@ -3,8 +3,6 @@
 import { client } from "@/lib/prisma";
 import { pusherServer } from "@/lib/utils";
 
-
-  
 export const getToggleRealtime = async (id: string, state: boolean) => {
   try {
     const chatRoom = await client.chatRoom.update({
@@ -18,21 +16,21 @@ export const getToggleRealtime = async (id: string, state: boolean) => {
         id: true,
         live: true,
       },
-    })
+    });
 
     if (chatRoom) {
       return {
         status: 200,
         message: chatRoom.live
-          ? 'Realtime mode enabled'
-          : 'Realtime mode disabled',
+          ? "Realtime mode enabled"
+          : "Realtime mode disabled",
         chatRoom,
-      }
+      };
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 export const onGetConversationMode = async (id: string) => {
   try {
@@ -43,15 +41,15 @@ export const onGetConversationMode = async (id: string) => {
       select: {
         live: true,
       },
-    })
-    console.log(mode)
-    return mode
+    });
+    console.log(mode);
+    return mode;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
-export const onGetDomainChatRoom = async (id:string)=>{
+export const onGetDomainChatRoom = async (id: string) => {
   try {
     const domains = await client.domain.findUnique({
       where: {
@@ -72,7 +70,7 @@ export const onGetDomainChatRoom = async (id:string)=>{
                     seen: true,
                   },
                   orderBy: {
-                    createdAt: 'desc',
+                    createdAt: "desc",
                   },
                   take: 1,
                 },
@@ -81,16 +79,16 @@ export const onGetDomainChatRoom = async (id:string)=>{
           },
         },
       },
-    })
-    if(domains) {
-      return domains
+    });
+    if (domains) {
+      return domains;
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
-export const  onGetChatMessages = async (id:string)=>{
+export const onGetChatMessages = async (id: string) => {
   try {
     const messages = await client.chatRoom.findMany({
       where: {
@@ -108,89 +106,87 @@ export const  onGetChatMessages = async (id:string)=>{
             seen: true,
           },
           orderBy: {
-            createdAt: 'asc',
+            createdAt: "asc",
           },
         },
       },
-    })
+    });
 
     if (messages) {
-      return messages
+      return messages;
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
-export const onReadUnseenMessages = async (id:string)=>{
+export const onReadUnseenMessages = async (id: string) => {
   try {
     await client.chatMessage.updateMany({
-      where:{
-        chatRoomId:id
+      where: {
+        chatRoomId: id,
       },
-      data:{
-        seen:true
-      }
-
-    })
+      data: {
+        seen: true,
+      },
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 export const onRealTimeChat = async (
-  chatRoom:string,
-  message:string,
-  id:string,
-  role: 'assistant' | 'user'
-)=>{
-
-  pusherServer.trigger(chatRoom, 'realtime-mode', {
-    chat:{
+  chatRoom: string,
+  message: string,
+  id: string,
+  role: "assistant" | "user"
+) => {
+  pusherServer.trigger(chatRoom, "realtime-mode", {
+    chat: {
       message,
       id,
-      role
-    }
-  })
-}
+      role,
+    },
+  });
+};
 
 export const onOwnerSendMessage = async (
- chatRoom: string,
+  chatRoom: string,
   message: string,
-  role: 'assistant' | 'user'
-)=>{
+  role: "assistant" | "user"
+) => {
   try {
     const newMessage = await client.chatRoom.update({
-      where:{
-        id:chatRoom
+      where: {
+        id: chatRoom,
       },
-      data:{
-        message:{
-          create:{
+      data: {
+        message: {
+          create: {
             message,
-            role
-          }
-        }
+            role,
+          },
+        },
       },
-      select:{
-        message:{
-          select:{
-            id:true,
-            role:true,
-            message:true,
-            seen:true
+      select: {
+        message: {
+          select: {
+            id: true,
+            role: true,
+            message: true,
+            seen: true,
           },
-          orderBy:{
-            createdAt:'desc'
+          orderBy: {
+            createdAt: "desc",
           },
-          take:1
-        }
-      }
-    })
-    if(newMessage){
-      return newMessage
+          take: 1,
+        },
+      },
+    });
+    if (newMessage) {
+      return newMessage;
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};

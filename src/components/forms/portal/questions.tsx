@@ -2,14 +2,9 @@ import React from 'react'
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form'
 import FormGenerator from '../form-generator'
 import { Button } from '@/components/ui/button'
-import { Loader } from '@/components/loader'
 
 type Props = {
-  questions: {
-    id: string
-    question: string
-    answered: string | null
-  }[]
+  questions: string[]
   register: UseFormRegister<FieldValues>
   error: FieldErrors<FieldValues>
   onNext(): void
@@ -21,17 +16,17 @@ const QuestionsForm = ({ questions, register, error, onNext }: Props) => {
     <div className="flex justify-center">
       <h2 className="text-4xl font-bold mb-5">Details</h2>
     </div>
-    {questions.map((question) => (
+    {questions.map((question, index) => (
       <FormGenerator
-        defaultValue={question.answered || ''}
-        key={question.id}
-        name={`question-${question.id}`}
+        defaultValue={ ''}
+        key={index}
+        name={`question-${index}`}
         errors={error}
         register={register}
-        label={question.question}
+        label={question}
         type="text"
         inputType="input"
-        placeholder={question.answered || 'I would like to know enterpise plan for my business'}
+        placeholder={'I would like to know enterpise plan for my business'}
       />
     ))}
 

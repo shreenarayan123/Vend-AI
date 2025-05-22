@@ -1,10 +1,10 @@
 import {
     onBookNewAppointment,
+    onDomainCustomerResponse,
     saveAnswers,
   } from '@/actions/appointment'
-  import { useEffect, useState } from 'react'
+  import {  useState } from 'react'
   import { useForm } from 'react-hook-form'
-import { string } from 'zod'
 import { useToast } from '../use-toast'
 
   export const usePortal = (
@@ -31,10 +31,17 @@ import { useToast } from '../use-toast'
       const onBookAppointment = handleSubmit(async(data)=>{
         try {
             setLoading(true);
+            const customerQuestions = await onDomainCustomerResponse(customerId);
+            
             const questions = Object.keys(data)
             .filter((key)=>key.startsWith('question'))
             .reduce((obj:any, key)=>{
-                obj[key.split('question-')[1]] = data[key];
+               const index = parseInt(obj[key.split('question-')[1]]) ;
+                const questionsId = customerQuestions?.questions[index]?.id;
+                if(questionsId){
+                    obj[questionsId] = data[key];
+                }
+                console.log(obj, "questions hai bro");
                 return obj;
             }, {});
             const savedAnswers = await saveAnswers(questions , customerId);

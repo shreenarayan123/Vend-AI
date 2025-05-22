@@ -2,8 +2,7 @@ import { SIDE_BAR_MENU } from "@/constants/menu";
 
 import React from "react";
 
-import { LogOut, MonitorSmartphone } from "lucide-react";
-import { MenuLogo } from "@/icons/menu-logo";
+import { LogOut} from "lucide-react";
 import MenuItem from "./menu-item";
 import DomainMenu from "./domain-menu";
 import Image from "next/image";

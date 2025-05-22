@@ -17,7 +17,12 @@ const Footer = (props: Props) => {
               <span className="text-xl font-bold">Vend AI</span>
             </div>
             <div className="text-sm text-muted-foreground font-semibold  flex items-center gap-2">
-              <span>✨</span> <span className="bg-gradient-to-l from-indigo-500 via-red-500 to-blue-500 text-transparent bg-clip-text">Developed by Shreenarayan</span>
+              <span>✨</span> 
+              <Link href={'http://shreenarayan.tech/'} target="_blank" rel="noopener noreferrer">
+                <span className="bg-gradient-to-l from-indigo-500 via-red-500 to-blue-500 text-transparent bg-clip-text cursor-pointer">
+                  Developed by Shreenarayan
+                </span>
+              </Link>
             </div>
           </div>
           <div className="mt-3 text-center text-sm text-muted-foreground">

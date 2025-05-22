@@ -1,14 +1,12 @@
-import { onGetAllAccountDomains } from '@/actions/settings'
-import ConversationMenu from '@/components/conversation'
-import Messenger from '@/components/conversation/messenger'
-import InfoBar from '@/components/infobar'
-import { Separator } from '@/components/ui/separator'
-import React from 'react'
+import { onGetAllAccountDomains } from "@/actions/settings";
+import ConversationMenu from "@/components/conversation";
+import Messenger from "@/components/conversation/messenger";
+import InfoBar from "@/components/infobar";
+import { Separator } from "@/components/ui/separator";
+import React from "react";
 
-type Props = {}
-
-const ConversationPage = async (props: Props) => {
-  const domains = await onGetAllAccountDomains()
+const ConversationPage = async () => {
+  const domains = await onGetAllAccountDomains();
   return (
     <div className="md:w-full h-full  flex flex-col md:flex-row overflow-y-scroll md:overflow-auto">
       <ConversationMenu domains={domains?.domains} />
@@ -21,7 +19,7 @@ const ConversationPage = async (props: Props) => {
         <Messenger />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ConversationPage
+export default ConversationPage;

@@ -1,39 +1,36 @@
-'use client'
-import { useConversation } from '@/hooks/conversation/use-conversation'
-import React from 'react'
-import TabsMenu from '../tabs/index'
-import { TabsContent } from '../ui/tabs'
-import ConversationSearch from './search'
-import { Loader } from '../loader'
-import ChatCard from './chat-card'
-import { CardDescription } from '../ui/card'
-import { Separator } from '../ui/separator'
-import EmailIcon from '@/icons/email-icon'
+"use client";
+import { useConversation } from "@/hooks/conversation/use-conversation";
+import React from "react";
+import ConversationSearch from "./search";
+import { Loader } from "../loader";
+import ChatCard from "./chat-card";
+import { CardDescription } from "../ui/card";
+import EmailIcon from "@/icons/email-icon";
 
 type Props = {
   domains?:
     | {
-        name: string
-        id: string
-        icon: string
+        name: string;
+        id: string;
+        icon: string;
       }[]
-    | undefined
-}
+    | undefined;
+};
 
-const ConversationMenu = ({domains}: Props) => {
-  const { register, chatRooms, loading, onGetActiveChatMessages } = useConversation()
+const ConversationMenu = ({ domains }: Props) => {
+  const { register, chatRooms, loading, onGetActiveChatMessages } =
+    useConversation();
 
-return (
-  <div className="py-3 pl-3 md:h-auto h-0 flex-1 md:overflow-auto ">
-      <div >
-        <div className='bg-slate-100 rounded-xl flex items-center gap-2 p-2 w-[90px]'>
+  return (
+    <div className="py-3 pl-3 md:h-auto h-0 w-[500px] md:overflow-auto ">
+      <div>
+        <div className="bg-slate-100 rounded-xl flex items-center gap-2 p-2 w-[90px]">
           <span>Chats</span>
-          <span><EmailIcon /></span>
+          <span>
+            <EmailIcon />
+          </span>
         </div>
-        <ConversationSearch
-          domains={domains}
-          register={register}
-        />
+        <ConversationSearch domains={domains} register={register} />
         <div className="flex flex-col">
           <Loader loading={loading}>
             {chatRooms.length ? (
@@ -54,8 +51,8 @@ return (
           </Loader>
         </div>
       </div>
-  </div>
-)
-}
+    </div>
+  );
+};
 
-export default ConversationMenu
+export default ConversationMenu;

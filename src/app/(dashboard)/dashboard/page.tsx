@@ -1,28 +1,18 @@
-import { getUserAppointments } from '@/actions/appointment'
-import {
-  getUserClients,
-  getUserPlanInfo,
-} from '@/actions/dashboard'
-import DashboardCard from '@/components/dashboard/cards'
-import  PlanUsage  from '@/components/dashboard/plan-usage'
-import InfoBar from '@/components/infobar'
-import CalIcon from '@/icons/cal-icon'
-import PersonIcon from '@/icons/person-icon'
-import { currentUser } from '@clerk/nextjs'
+import { getUserAppointments } from "@/actions/appointment";
+import { getUserClients, getUserPlanInfo } from "@/actions/dashboard";
+import DashboardCard from "@/components/dashboard/cards";
+import PlanUsage from "@/components/dashboard/plan-usage";
+import InfoBar from "@/components/infobar";
+import CalIcon from "@/icons/cal-icon";
+import PersonIcon from "@/icons/person-icon";
 
-
-type Props = {
- 
-}
-
-const page = async({ }: Props) => {
-  
+const page = async () => {
   const clients = await getUserClients();
   const plan = await getUserPlanInfo();
-  const bookings=  await  getUserAppointments();
+  const bookings = await getUserAppointments();
   return (
     <>
-     <InfoBar />
+      <InfoBar />
       <div className="overflow-y-auto w-full chat-window flex-1 h-0 p-10">
         <div className="flex gap-5 flex-wrap">
           <DashboardCard
@@ -54,7 +44,7 @@ const page = async({ }: Props) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;

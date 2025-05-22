@@ -1,5 +1,4 @@
 import React from 'react'
-import Section from '../section-label'
 import CodeSnippet from './code-snippet'
 
 type Props = {}
@@ -7,7 +6,8 @@ type Props = {}
 const Installation = (props: Props) => {
     const snippetPath = [
         "src/components/installation/html-snippet.html",
-        "src/components/installation/react-snippet.tsx",
+        "src/components/installation/chatbot-iframe.tsx",
+        "src/components/installation/layout-code.tsx",
     ]
   return (
     <div className="flex flex-col gap-10 md:ml-20">

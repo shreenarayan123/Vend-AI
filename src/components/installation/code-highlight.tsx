@@ -13,7 +13,6 @@ type CodeHighlightProps = {
 
 const CodeHightLight = ({code, lang}: CodeHighlightProps) => {
     const [copied, setCopied] = useState(false);
-    console.log("languess", lang);
   return (
    <div className='relative p-3'>
     <Button

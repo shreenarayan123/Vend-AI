@@ -27,9 +27,7 @@ export const getUserAppointments = async () => {
   }
 };
 
-
 export const onDomainCustomerResponse = async (customerId: string) => {
-  console.log(customerId,  'customerId');
   try {
     const customerQuestions = await client.customer.findUnique({
       where: {
@@ -81,6 +79,8 @@ export const onBookNewAppointment = async (
   email: string
 ) => {
   try {
+    console.log("Creating booking");
+    console.log(domainId, customerId, slot, date, email, "booking data");
     const newBooking = await client.customer.update({
       where: {
         id: customerId,
@@ -97,9 +97,10 @@ export const onBookNewAppointment = async (
       },
     });
     if (newBooking) {
-      return { status: 200, message: 'Booking created' }
+      return { status: 200, message: "Booking created" };
     }
   } catch (error) {
+    console.log("Error creating booking");
     console.log(error);
   }
 };
@@ -111,9 +112,7 @@ export const saveAnswers = async (
   try {
     for (const question in questions) {
       await client.customer.update({
-        where: {
-          id: customerId,
-        },
+        where: { id: customerId },
         data: {
           questions: {
             update: {
@@ -130,7 +129,7 @@ export const saveAnswers = async (
     }
     return {
       status: 200,
-      message: "Answers saved successfully",
+      messege: "Updated Responses",
     };
   } catch (error) {
     console.log(error);

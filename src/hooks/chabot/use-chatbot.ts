@@ -52,7 +52,6 @@ const upload = new UploadClient({
 >(undefined)
 const searchParams = useSearchParams();
 const id = searchParams.get('id');
-console.log(id, "id from usechatbot")
   const onScrollToBottom = () => {
     messageWindowRef.current?.scroll({
       top: messageWindowRef.current.scrollHeight,
@@ -75,7 +74,6 @@ console.log(id, "id from usechatbot")
   let limitRequest = 0;
   
   const onGetDomainChatBot = async(id:string)=>{
-    console.log(id, "id from get domain chatbot");
     setCurrentBotId(id)
     const chatBot = await onGetCurrentChatBot(id);
     if(chatBot){
@@ -90,10 +88,6 @@ console.log(id, "id from usechatbot")
     }
   }
   useEffect(()=>{
-   
-    // window.addEventListener('message',(e)=>{
-    //   const botId = e.data
-    //   console.log(botId, "edata from useffect")
         if(limitRequest < 1 && typeof id == 'string'){
             onGetDomainChatBot(id)
             limitRequest++
@@ -198,26 +192,26 @@ console.log(id, "id from usechatbot")
   ) => {
     const counterRef = useRef(1)
   
-    // useEffect(() => {
-    //   pusherClient.subscribe(chatRoom)
-    //   pusherClient.bind('realtime-mode', (data: any) => {
-    //     console.log('✅', data)
-    //     if (counterRef.current !== 1) {
-    //       setChats((prev: any) => [
-    //         ...prev,
-    //         {
-    //           role: data.chat.role,
-    //           content: data.chat.message,
-    //         },
-    //       ])
-    //     }
-    //     counterRef.current += 1
-    //   })
-    //   return () => {
-    //     pusherClient.unbind('realtime-mode')
-    //     pusherClient.unsubscribe(chatRoom)
-    //   }
-    // }, [])
+    useEffect(() => {
+      pusherClient.subscribe(chatRoom)
+      pusherClient.bind('realtime-mode', (data: any) => {
+        console.log('✅', data)
+        if (counterRef.current !== 1) {
+          setChats((prev: any) => [
+            ...prev,
+            {
+              role: data.chat.role,
+              content: data.chat.message,
+            },
+          ])
+        }
+        counterRef.current += 1
+      })
+      return () => {
+        pusherClient.unbind('realtime-mode')
+        pusherClient.unsubscribe(chatRoom)
+      }
+    }, [])
   }
   
   

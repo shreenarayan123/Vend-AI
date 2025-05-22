@@ -46,22 +46,20 @@ export default function Home() {
             </div>{" "}
             <span className="text-xl font-bold">Vend AI</span>
           </div>
-         <ul className="hidden gap-10 justify-between self-stretch my-auto leading-5 max-md:flex-wrap max-md:max-w-full font-normal  md:flex">
-        {['Pricing', 'Features', 'About us'].map((item) => (
-          <li
-            key={item}
-            className="text cursor-pointer text-500 relative group text-sm font-medium pb-[2px]"
-          >
-            {item}
-            <span className="absolute bottom-0 left-0 w-0  rounded-lg h-[2px] bg-black transition-all duration-300 group-hover:w-[110%] "></span>
-          </li>
-        ))}
-      </ul>
+          <ul className="hidden gap-10 justify-between self-stretch my-auto leading-5 max-md:flex-wrap max-md:max-w-full font-normal  md:flex">
+            {["Pricing", "Features", "About us"].map((item) => (
+              <li
+                key={item}
+                className="text cursor-pointer text-500 relative group text-sm font-medium pb-[2px]"
+              >
+                {item}
+                <span className="absolute bottom-0 left-0 w-0  rounded-lg h-[2px] bg-black transition-all duration-300 group-hover:w-[110%] "></span>
+              </li>
+            ))}
+          </ul>
           <div className="flex items-center gap-4">
             <Link href="/dashboard">
-              <Button  size="sm">
-                Log in
-              </Button>
+              <Button size="sm">Log in</Button>
             </Link>
           </div>
         </div>

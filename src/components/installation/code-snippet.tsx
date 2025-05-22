@@ -10,6 +10,7 @@ type Props = {
 
 const CodeSnippet = async ({  path }: Props) => {
   const domains = await onGetAllAccountDomains();
+  const backendUrl = process.env.BACKEND_URL;
 
   const getCode = async(path:string[])=>{
     const getChatbotCode = path.map((path)=>{
@@ -21,19 +22,19 @@ const CodeSnippet = async ({  path }: Props) => {
    
   const domainId = domains?.domains?.[0]?.id ?? null;
  
-    const snippetWithId = path.map((path)=>{
-     path.replace(/\$\{id\}/g, domainId ?? "");
-    })
-  console.log("Snippet with ID:", snippetWithId);
+  const snippetWithId = path.map((path) => {
+    return path
+      .replace(/\$\{id\}/g, domainId ?? "")
+      .replace(/\$\{backendurl\}/g, backendUrl ?? "");
+  })
   return snippetWithId;
   }
    const chatbotCode1 = await getCode(path);
    const codeSnippetWithId = getId(chatbotCode1);
-  console.log("Code Snippet with ID:", codeSnippetWithId);
 
   return (
     <div className="w-full flex">
-        <CodeCard code={chatbotCode1}/>
+        <CodeCard code={codeSnippetWithId}/>
       </div>
    
   );

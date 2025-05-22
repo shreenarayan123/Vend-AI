@@ -1,15 +1,11 @@
 'use client'
 import { usePortal } from '@/hooks/portal/use-portal'
 import { cn } from '@/lib/utils'
-import React, { useEffect } from 'react'
+import React from 'react'
 import PortalSteps from './portal-steps'
 
 type PortalFormProps = {
-  questions: {
-    id: string
-    question: string
-    answered: string | null
-  }[]
+  questions: string[]
   type: 'Appointment' | 'Payment'
   customerId: string
   domainid: string
@@ -57,12 +53,7 @@ const PortalForm = ({
       selectedSlot,
       loading,
     } = usePortal(customerId, domainid, email)
-  
-    useEffect(() => {
-      if (questions.every((question) => question.answered)) {
-        onNext()
-      }
-    }, [])
+
   
     return (
       <div className="h-screen flex items-center justify-center bg-gradient-to-br from-red-400 via-pink-300  to-yellow-400">

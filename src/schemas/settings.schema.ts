@@ -1,4 +1,4 @@
-import { info } from 'console'
+
 import { z } from 'zod'
 
 export const MAX_UPLOAD_SIZE = 1024 * 1024 * 2 // 2MB
@@ -44,8 +44,8 @@ export const DomainSettingsSchema = z
       .min(4, { message: 'A domain must have atleast 3 characters' })
       .refine(
         (value) =>
-          /^((?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,3}$/.test(value ?? ''),
-        'This is not a valid domain'
+            /^((?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+(tech|com|in|io|ai|me|works|pro|vercel\.app)$/.test(value ?? ''),
+      'This is not a valid domain'
       )
       .optional()
       .or(z.literal('').transform(() => undefined)),

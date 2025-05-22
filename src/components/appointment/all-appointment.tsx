@@ -1,30 +1,30 @@
-import { APPOINTMENT_TABLE_HEADER } from '@/constants/menu'
-import  DataTable from '../table'
-import { TableCell, TableRow } from '../ui/table'
-import { getMonthName } from '@/lib/utils'
-import { CardDescription } from '../ui/card'
+import { APPOINTMENT_TABLE_HEADER } from "@/constants/menu";
+import DataTable from "../table";
+import { TableCell, TableRow } from "../ui/table";
+import { getMonthName } from "@/lib/utils";
+import { CardDescription } from "../ui/card";
 
-import React from 'react'
+import React from "react";
 
 type Props = {
-    bookings:
-      | {
-          Customer: {
-            Domain: {
-              name: string
-            } | null
-          } | null
-          id: string
-          email: string
-          domainId: string | null
-          date: Date
-          slot: string
-          createdAt: Date
-        }[]
-      | undefined
-  }
+  bookings:
+    | {
+        Customer: {
+          Domain: {
+            name: string;
+          } | null;
+        } | null;
+        id: string;
+        email: string;
+        domainId: string | null;
+        date: Date;
+        slot: string;
+        createdAt: Date;
+      }[]
+    | undefined;
+};
 
-const AllAppointments = ({bookings}: Props) => {
+const AllAppointments = ({ bookings }: Props) => {
   return (
     <DataTable headers={APPOINTMENT_TABLE_HEADER}>
       {bookings ? (
@@ -33,19 +33,19 @@ const AllAppointments = ({bookings}: Props) => {
             <TableCell>{booking.email}</TableCell>
             <TableCell>
               <div>
-                {getMonthName(booking.date.getMonth())} {booking.date.getDate()}{' '}
+                {getMonthName(booking.date.getMonth())} {booking.date.getDate()}{" "}
                 {booking.date.getFullYear()}
               </div>
               <div className="uppercase">{booking.slot}</div>
             </TableCell>
             <TableCell>
               <div>
-                {getMonthName(booking.createdAt.getMonth())}{' '}
+                {getMonthName(booking.createdAt.getMonth())}{" "}
                 {booking.createdAt.getDate()} {booking.createdAt.getFullYear()}
               </div>
               <div>
-                {booking.createdAt.getHours()} {booking.createdAt.getMinutes()}{' '}
-                {booking.createdAt.getHours() > 12 ? 'PM' : 'AM'}
+                {booking.createdAt.getHours()} {booking.createdAt.getMinutes()}{" "}
+                {booking.createdAt.getHours() > 12 ? "PM" : "AM"}
               </div>
             </TableCell>
             <TableCell className="text-right">
@@ -57,7 +57,7 @@ const AllAppointments = ({bookings}: Props) => {
         <CardDescription>No Appointments</CardDescription>
       )}
     </DataTable>
-  )
-}
+  );
+};
 
-export default AllAppointments
+export default AllAppointments;

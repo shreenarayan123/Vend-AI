@@ -1,5 +1,5 @@
 import React from "react";
-import { cn, extractUUIDFromString, getMonthName } from "@/lib/utils";
+import { cn, extractUUIDFromString } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { User } from "lucide-react";
 import Image from "next/image";
@@ -44,9 +44,7 @@ const Bubble = ({ message, createdAt }: Props) => {
       <div
         className={cn(
           "flex flex-col  min-w-[200px] max-w-[300px] p-3 rounded-2xl ",
-          message.role == "assistant"
-            ? "bg-white "
-            : "bg-blue-500  text-white"
+          message.role == "assistant" ? "bg-white " : "bg-blue-500  text-white"
         )}
       >
         {image ? (

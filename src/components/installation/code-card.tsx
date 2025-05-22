@@ -1,14 +1,9 @@
-import { Button } from "@/components/ui/button";
+
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CodeHightLight from "./code-highlight";
 
@@ -20,8 +15,8 @@ const CodeCard = ({code}: Props) => {
   return (
     <Tabs defaultValue="html" className="w-[800px]">
       <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="html">HTML</TabsTrigger>
-        <TabsTrigger value="react">React</TabsTrigger>
+        <TabsTrigger value="html">HTML or React </TabsTrigger>
+        <TabsTrigger value="react">Next.js (ts)</TabsTrigger>
       </TabsList>
       <TabsContent value="html">
         <Card>
@@ -36,10 +31,12 @@ const CodeCard = ({code}: Props) => {
       <TabsContent value="react">
         <Card>
           <CardHeader>
-           <p className='text-xl ' > Add the below code in script tag in head of index.html</p>
+           <p className='text-xl ' > create a  new component ChatbotIframe</p>
           </CardHeader>
           <CardContent className="space-y-2">
-            <CodeHightLight code={code[1]} lang="jsx" />      
+            <CodeHightLight code={code[1]} lang="tsx" />    
+             <p className='text-xl ' > Layout.tsx</p>  
+             <CodeHightLight code={code[2]} lang="tsx" />   
           </CardContent>
         </Card>
       </TabsContent>

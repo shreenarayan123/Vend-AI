@@ -2,14 +2,9 @@ import React from 'react'
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form'
 import QuestionsForm from './questions'
 import BookAppointmentDate from './booking-date'
-import PaymentCheckout from './product-checkout'
 
 type Props = {
-    questions: {
-      id: string
-      question: string
-      answered: string | null
-    }[]
+    questions: string[]
     type: 'Appointment' | 'Payment'
     register: UseFormRegister<FieldValues>
     error: FieldErrors<FieldValues>
@@ -51,10 +46,7 @@ type Props = {
     onSlot,
     loading,
     slot,
-    products,
-    bookings,
-    amount,
-    stripeId,
+    bookings
   }: Props) => {
     if (step == 1) {
       return (
