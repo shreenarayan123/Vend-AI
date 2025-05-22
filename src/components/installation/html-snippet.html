@@ -12,7 +12,7 @@ const iframe = document.createElement("iframe");
             border: none;
         }
     `)    
-    iframe.src = http://localhost:5000/chatbot?id=${id}
+    iframe.src = "${backendurl}chatbot?id=${id}"
     iframe.classList.add('chat-frame')
     document.body.appendChild(iframe)
     
