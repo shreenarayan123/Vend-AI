@@ -11,9 +11,9 @@ import { CheckCircle2 } from "lucide-react";
 import { pricingCard } from '@/constants/landing-page';
 import Link from 'next/link';
 
-type Props = {}
 
-const Pricing = (props: Props) => {
+
+const Pricing = () => {
   return (
     <section id="pricing" className="py-24">
     <div className="container">

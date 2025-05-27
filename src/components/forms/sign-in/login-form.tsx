@@ -4,9 +4,9 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import FormGenerator from "../form-generator";
 
-type Props = {};
 
-const LoginForm = (props: Props) => {
+
+const LoginForm = () => {
   const {
     register,
     formState: { errors },

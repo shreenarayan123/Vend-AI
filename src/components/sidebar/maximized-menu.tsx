@@ -1,4 +1,4 @@
-import { LogOut, Menu, MonitorSmartphone } from "lucide-react";
+import { LogOut, Menu} from "lucide-react";
 import Image from "next/image";
 import Logo from "../../app/assets/logo.png";
 import React from "react";

@@ -175,24 +175,3 @@ export const onGetAllBookingsForCurrentUser = async (clerkId: string) => {
     console.log(error);
   }
 };
-
-export const getUserAppintments = async () => {
-  try {
-    const user = await currentUser();
-    if (user) {
-      const bookings = await client.bookings.count({
-        where: {
-          Customer: {
-            Domain: {
-              User: {
-                clerkId: user.id,
-              },
-            },
-          },
-        },
-      });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};

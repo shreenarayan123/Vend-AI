@@ -16,9 +16,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
 
-type Props = {};
 
-const Features = (props: Props) => {
+
+const Features = () => {
   return (
     <section
     id="features"

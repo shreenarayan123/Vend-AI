@@ -3,9 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import Logo from "../../app/assets/logo.png";
 
-type Props = {}
-
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <footer className="border-t py-5 bg-muted/30">
         <div className="container">

@@ -6,9 +6,9 @@ import { ArrowRight, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Logo from "../../app/assets/logo.png";
 
-type Props = {}
 
-const Hero = (props: Props) => {
+
+const Hero = () => {
   return (
     <section className="container py-20 md:py-20">
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">

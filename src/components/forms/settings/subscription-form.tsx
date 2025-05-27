@@ -4,7 +4,6 @@ import { StripeElements } from '@/components/settings/stripe-elements'
 import SubscriptionCard from '@/components/settings/subscription-card'
 import { Button } from '@/components/ui/button'
 import { useSubscription } from '@/hooks/billing/use-billing'
-import { Sub } from '@radix-ui/react-context-menu'
 import React from 'react'
 
 type Props = {

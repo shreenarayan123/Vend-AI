@@ -7,7 +7,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ArrowBigLeftIcon, ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Logo from '../../app/assets/logo.png'
 import StripeLogo from '../../app/assets/Stripe_Logo.svg'
@@ -25,7 +25,6 @@ const Modal = ({
   type,
   title,
   description,
-  logo,
   trigger,
   children,
 }: Props) => {

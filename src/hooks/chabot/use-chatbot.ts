@@ -19,7 +19,6 @@ const upload = new UploadClient({
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors },
       } = useForm<ChatBotMessageProps>({
         resolver: zodResolver(ChatBotMessageSchema),

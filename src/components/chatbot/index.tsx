@@ -6,9 +6,9 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { BotIcon } from "@/icons/bot-icon";
 
-type Props = {};
 
-const AiChatBot = (props: Props) => {
+
+const AiChatBot = () => {
   const {
     onOpenChatBot,
     botOpened,

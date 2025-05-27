@@ -11,7 +11,7 @@ import UserTypeCard from './user-type-card'
      return (
        <>
        <h2 className='text-gravel md:text-4xl font-bold'>Create new Account</h2>
-       <p>Tell us about your self Let's tailor your experience
+       <p>Tell us about your self Let&apos;s tailor your experience
        <br/>
        So it best suits you
        </p>

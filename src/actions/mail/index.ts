@@ -128,7 +128,9 @@ export const onAddCustomersToEmail = async (
     if (customerAdd) {
       return { status: 200, message: "Customer added to campaign" };
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const onBulkMailer = async (email: string[], campaignId: string) => {

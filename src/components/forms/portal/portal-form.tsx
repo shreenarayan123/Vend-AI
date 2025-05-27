@@ -27,7 +27,6 @@ type PortalFormProps = {
   stripeId?: string
 }
 
-type Props = {}
 
 const PortalForm = ({
     questions,

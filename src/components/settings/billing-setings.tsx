@@ -8,9 +8,9 @@ import Modal from '../modal'
 import SubscriptionForm from '../forms/settings/subscription-form'
 import Image from 'next/image'
 
-type Props = {}
 
-const BillingSettings = async (props: Props) => {
+
+const BillingSettings = async () => {
   const plan = await onGetSubscriptionPlan();
   const planFeatures = pricingCard.find(
     (card)=> card.title.toUpperCase() === plan?.toUpperCase()

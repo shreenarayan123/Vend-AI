@@ -1,9 +1,9 @@
 import React from 'react'
 import CodeSnippet from './code-snippet'
 
-type Props = {}
 
-const Installation = (props: Props) => {
+
+const Installation = () => {
     const snippetPath = [
         "src/components/installation/html-snippet.html",
         "src/components/installation/chatbot-iframe.tsx",

@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState, useTransition } from 'react'
+import React, { useEffect, useState} from 'react'
 import {
   Card,
   CardContent,
@@ -10,11 +10,9 @@ import Section from '@/components/section-label'
 import FormGenerator from '../form-generator'
 import { Button } from '@/components/ui/button'
 import { Loader } from '@/components/loader'
-import Accordion from '@/components/accordion'
 import { useCompanyInfo } from '@/hooks/settings/use-settings'
-import { CrossIcon, Trash2 } from 'lucide-react'
+import {  Trash2 } from 'lucide-react'
 import { onDeleteCompanyInfo } from '@/actions/settings'
-import { useRouter } from 'next/navigation'
 
 type Props = {
   id:string

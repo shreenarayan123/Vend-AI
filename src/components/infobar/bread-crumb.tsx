@@ -4,17 +4,14 @@ import React from "react";
 import { Loader } from "../loader";
 import { Switch } from "../ui/switch";
 
-type Props = {};
 
-const BreadCrumb = (props: Props) => {
+
+const BreadCrumb = () => {
   const {
     chatRoom,
     page,
-    expand,
     loading,
     onActivateRealtime,
-    onExpand,
-    onSignOut,
     realtime,
   } = useSideBar();
   return (

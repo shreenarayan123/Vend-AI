@@ -69,7 +69,7 @@ const DomainMenu = ({min, domains}: Props) => {
       </div>
       <div>
         { domains &&
-         domains.map((domain, key)=>(
+         domains.map((domain)=>(
           <Link
           href={`/settings/${domain.name.split('.')[0]}`}
           key={domain.id}

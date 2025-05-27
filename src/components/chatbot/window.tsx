@@ -51,8 +51,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
       realtimeMode,
       setChat,
       textColor,
-      theme,
-      help,
+      theme
     },
     ref
   ) => {
