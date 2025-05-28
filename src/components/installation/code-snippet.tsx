@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Suspense } from "react";
 import CodeCard from "./code-card";
@@ -6,18 +6,14 @@ import { SkeletonCard } from "./Skeleton";
 
 const CodeSnippet = ({ snippetCode }: { snippetCode: string[] }) => {
   return (
-    <Suspense fallback={<SkeletonCard/>}>
+    <Suspense fallback={<SkeletonCard />}>
       <div className="space-y-6">
         <div className="w-full flex">
-        <CodeCard code={snippetCode}/>
+          <CodeCard code={snippetCode} />
+        </div>
       </div>
-    </div>
     </Suspense>
   );
 };
 
 export default CodeSnippet;
-
-    // <div className="w-full flex">
-    //     <CodeCard code={codeSnippetWithId}/>
-    //   </div>
