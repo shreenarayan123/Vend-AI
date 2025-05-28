@@ -1,13 +1,19 @@
+
 import InfoBar from "@/components/infobar";
-import React from "react";
-import Installation from "@/components/installation";
+import React, { Suspense } from "react";
+import dynamic from "next/dynamic";
+import { SkeletonCard } from "@/components/installation/Skeleton";
+
+const Installation = dynamic(()=> import("@/components/installation"), {suspense:true});
 
 const page = () => {
   return (
     <>
       <InfoBar />
       <div className="overflow-y-auto w-full  px-4  pt-5">
-        <Installation />
+        <Suspense fallback={<SkeletonCard/>}>
+        <Installation/>
+        </Suspense>
       </div>
     </>
   );

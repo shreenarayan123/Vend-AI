@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { getUserAppointments } from "@/actions/appointment";
 import { getUserClients, getUserPlanInfo } from "@/actions/dashboard";
 import DashboardCard from "@/components/dashboard/cards";

@@ -1,5 +1,6 @@
+
 import React from 'react'
-import CodeSnippet from './code-snippet'
+import CodeSnippetWrapper from './CodeSnippetWrapper'
 
 
 
@@ -14,9 +15,8 @@ const Installation = () => {
      <div className='flex flex-col gap-3 '>
         <p className='text-2xl font-medium' > Choose your techstack</p>
     </div>
-    <CodeSnippet path={snippetPath}  />
-    
-  </div>
+    <CodeSnippetWrapper path={snippetPath}/>
+  </div>  
   )
 }
 

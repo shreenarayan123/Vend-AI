@@ -1,3 +1,4 @@
+  export const dynamic = 'force-dynamic';
 import {
     Table,
     TableBody,
@@ -6,6 +7,8 @@ import {
     TableRow,
   } from '@/components/ui/table'
   import { cn } from '@/lib/utils'
+
+
 
 type Props = {
     headers:string[]
